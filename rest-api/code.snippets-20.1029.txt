@@ -13,11 +13,6 @@
 {"isbn":"8980075329379","title":"Tâm Tĩnh Lặng, Miệng Mỉm Cười","author":"Dịch giả N.T.Loan","edition":1,"publishedYear":2020}
 
 
-
-
-
-
-
 1. Free RestAPI for testing ....................................................
 > https://jsonplaceholder.typicode.com/guide.html
 > http://dummy.restapiexample.com/
@@ -29,8 +24,8 @@
 > https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/index.html
 
 3. Environment Variables ....................................................
-> Path: C:\Program Files\apache-tomcat-9.0.36
-> CATALINA_HOME: C:\Program Files\apache-tomcat-9.0.36
+> Path: C:\Program Files\apache-tomcat-9.0.39
+> CATALINA_HOME: C:\Program Files\apache-tomcat-9.0.39
 > JAVA_HOME: C:\Program Files\Java\jdk-14.0.1
 
 4. SQL Server ....................................................
@@ -72,45 +67,52 @@
     </servlet-mapping>
 
 
-7. pom.xml for WebService ....................................................
-
-	<dependency>
+7. pom.xml for Web Services ....................................................
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-servlet -->
+        <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
-            <version>2.31</version>
+            <version>2.32</version>
         </dependency>
+
+       
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2 -->
         <dependency>
             <groupId>org.glassfish.jersey.inject</groupId>
             <artifactId>jersey-hk2</artifactId>
-            <version>2.31</version>
+            <version>2.32</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson -->
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
-            <version>2.31</version>
+            <version>2.32</version>
         </dependency>
+
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>8.2.2.jre8</version>
         </dependency>
+	
 
-8. pom.xml for WebClient ....................................................
+8. pom.xml for Web Client ....................................................
 
 	<dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-client</artifactId>
-            <version>2.31</version>
+            <version>2.32</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.inject</groupId>
             <artifactId>jersey-hk2</artifactId>
-            <version>2.31</version>
+            <version>2.32</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
-            <version>2.31</version>
+            <version>2.32</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
