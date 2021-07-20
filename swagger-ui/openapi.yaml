@@ -1,0 +1,8 @@
+prettyPrint: true
+cacheTTL: 0
+openAPI:
+  info:
+    version: '21.0717'
+    title: 'Jersey and Swagger UI example by giao.lang'
+  servers:
+    - url: 'http://localhost:6969/giaolang-bookstore/api'
