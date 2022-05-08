@@ -1,11 +1,12 @@
-# DoIt.Now | LÀM ĐI-CHỜ CHI | TÀI NGUYÊN VỀ SOFTWARE TESTING
+﻿# DoIt.Now - LÀM ĐI-CHỜ CHI | SOFTWARE TESTING
 
-## Bạn tìm thấy trong "nhà kho" này các nội dung liên quan đến môn học SOFTWARE TESTING. Vẫn đang cập nhật...
-* Unit Testing dùng Maven project
-* API Testing dùng Maven project
-* Đang cập nhật...
+### Bạn tìm thấy trong "nhà kho" này các tài nguyên của môn học Kiểm thử phần mềm (Software Testing)
 
-## Cảm ơn các thế hệ sinh viên đã kiên nhẫn nghe giáo.làng tra tấn ngày qua ngày trên lớp. Các bạn chính là nguồn cảm hứng bất tận cho giáo.làng tạo ra những tài liệu này.
-## HAPPY CODE - HAPPY MONEY
+* Đang cập nhật nội dung kho...
 
-## © 2020 giáo-làng | fb/giao.lang.bis | fb/doit.now.oha
+### Cảm ơn các thế hệ sinh viên đã nhiệt tình ủng hộ, kiên nhẫn & chịu đựng khi tham gia bài giảng cùng giáo. Các bạn mãi là niềm cảm hứng bất tận cho ngọn lửa nhiệt huyết trong giáo luôn luôn bùng cháy! 
+### Welcome mọi feedback!
+
+### HAPPY CODE | HAPPY MONEY | HAPPY LIFE
+
+#### © 2022 Bản quyền thuộc về giáo.làng | fb/giao.lang.bis | youtube.com/c/giáolàng

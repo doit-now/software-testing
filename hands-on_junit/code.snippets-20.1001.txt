@@ -1,0 +1,58 @@
+﻿CODE SNIPPETS for SOFTWARE TESTING COURSE | Version 20.0930 | © 2020 by giáo.làng | fb/giao.lang.bis
+
+
+I. UNIT TESTING | JUNIT 
+***********************
+@Disabled("Do not run this in a lower configuration hardware")
+
+
+II. DATABASE PREPARATION
+***********************
+1. DB Dependency ......................
+
+<dependency>
+	<groupId>com.microsoft.sqlserver</groupId>
+        <artifactId>mssql-jdbc</artifactId>
+        <version>8.2.2.jre8</version>
+</dependency>
+
+2. Repository & JAR download ......................
+
+> https://mvnrepository.com/
+> https://jar-download.com/
+> https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/index.html
+
+3. DB Management Tool ......................
+
+> Enable SQLServer Browser service trong Services
+> Enable TCP/IP listener qua Configuration Manager
+> SQLServerManager15.msc for [SQL Server 2019]
+  SQLServerManager14.msc for [SQL Server 2017]
+  SQLServerManager13.msc for [SQL Server 2016]
+  SQLServerManager12.msc for [SQL Server 2014]
+  SQLServerManager11.msc for [SQL Server 2012]
+  SQLServerManager10.msc for [SQL Server 2008]
+ 
+
+4. DB Scripts ......................
+
+create database SWT;
+use SWT;
+
+create table Book 
+(
+  Isbn char(13) primary key,
+  Title nvarchar(50) not null,
+  Author nvarchar(50) not null,
+  Edition int,
+  PublishedYear int
+);
+
+insert into Book values ('2518407786529', N'The Alchemist (Nhà giả kim)', N'Paulo Coelho', 1, 2013);
+insert into Book values ('6911225907262', N'Tuổi Trẻ Đáng Giá Bao Nhiêu', N'Rosie Nguyễn', 2, 2018);
+insert into Book values ('2425402340697', N'Đời Ngắn Đừng Ngủ Dài', N'Robin Sharma', 2, 2014);
+
+
+select * from Book;
+
+delete from Book where isbn = '2436636288761';

@@ -1,0 +1,60 @@
+﻿CODE SNIPPETS for SOFTWARE TESTING COURSE | Version 20.10 | © 2020 by giáo.làng | fb/giao.lang.bis
+
+
+I. WEBDRIVER & WEBCLIENT
+***********************
+> https://chromedriver.chromium.org/downloads
+> https://www.selenium.dev/downloads/
+
+II. DEPENDENCIES 
+***********************
+> https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/4.0.0-alpha-6
+
+<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.0.0-alpha-6</version>
+</dependency>
+
+> Tự động hóa việc kiểm tra và download ChromeDriver thay vì download ChromeDriver bằng tay và cấu hình trong code 
+  https://github.com/bonigarcia/webdrivermanager
+
+  <dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>4.2.2</version>
+    <scope>test</scope>
+  </dependency>
+
+
+III. CODE BY BONIGARCIA LIBRARY
+***********************
+public class ChromeTest {
+
+    private WebDriver driver;
+
+    @BeforeClass
+    public static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
+
+    @Before
+    public void setupTest() {
+        driver = new ChromeDriver();
+    }
+
+    @After
+    public void teardown() {
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+
+    @Test
+    public void test() {
+        // Your test code here
+    }
+
+}
+

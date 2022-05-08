@@ -1,0 +1,460 @@
+﻿WEB SERVICES | Version 20.0705 | © 2020 by giáo.làng | fb/giao.lang.bis
+
+0. JSON Sample for books ....................................................
+{"isbn":"2436636288761","title":"Trên Đường Băng","author":"Tony Buổi Sáng","edition":2,"publishedYear":2017}
+
+{"isbn":"6911225907262","title":"Tuổi Trẻ Đáng Giá Bao Nhiêu","author":"Rosie Nguyễn","edition":2,"publishedYear":2018}
+
+--new
+{"isbn":"8788427845641","title":"Đừng Chạy Theo Số Đông","author":"Kiên Trần","edition":1,"publishedYear":2020}
+{"isbn":"5265552974765","title":"Làm Người Thú Vị","author":"TS. Edward De Bono ","edition":1,"publishedYear":2020}
+{"isbn":"4018690253374","title":"Sống Thực Tế Giữa Đời Thực Dụng","author":"Dịch giả B.Nhung","edition":1,"publishedYear":2018}
+{"isbn":"7292086764911","title":"Những Cô Gái Tốt Đều Phải Sống Rực Rỡ","author":"Yến Lăng Dương","edition":1,"publishedYear":2020}
+{"isbn":"8980075329379","title":"Tâm Tĩnh Lặng, Miệng Mỉm Cười","author":"Dịch giả N.T.Loan","edition":1,"publishedYear":2020}
+
+
+1. Free RestAPI for testing ....................................................
+> https://jsonplaceholder.typicode.com/guide.html
+> http://dummy.restapiexample.com/
+> https://any-api.com/
+
+2. Repository & JAR download ....................................................
+> https://mvnrepository.com/
+> https://jar-download.com/
+> https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/index.html
+
+3. Environment Variables ....................................................
+> Path: C:\Program Files\apache-tomcat-9.0.39
+> CATALINA_HOME: C:\Program Files\apache-tomcat-9.0.39
+> JAVA_HOME: C:\Program Files\Java\jdk-14.0.1
+
+4. SQL Server ....................................................
+> Enable SQLServer Browser service trong Services
+> Enable TCP/IP listener qua Configuration Manager
+> SQLServerManager15.msc for [SQL Server 2019]
+  SQLServerManager14.msc for [SQL Server 2017]
+  SQLServerManager13.msc for [SQL Server 2016]
+  SQLServerManager12.msc for [SQL Server 2014]
+  SQLServerManager11.msc for [SQL Server 2012]
+  SQLServerManager10.msc for [SQL Server 2008]
+
+5. Tomcat Users ....................................................
+> CATALINA_home/conf/tomcat-users.xml
+> 
+    <role rolename="manager"/>
+    <role rolename="admin"/>
+    <role rolename="manager-gui"/>
+    <role rolename="manager-script"/>
+    <role rolename="manager-jmx"/>
+    <role rolename="manager-status"/>
+    <user username="sa" password="sa123456" roles="manager,admin,manager-gui,manager-script,manager-jmx,manager-status" />
+
+6. web.xml for WebService ....................................................
+
+ <servlet>
+        <servlet-name>Jersey REST Service</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>com.giaolang.ws</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>Jersey REST Service</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+
+
+7. pom.xml for Web Services ....................................................
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-servlet -->
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>2.32</version>
+        </dependency>
+
+       
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2 -->
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+            <version>2.32</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>2.32</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>8.2.2.jre8</version>
+        </dependency>
+	
+
+8. pom.xml for Web Client ....................................................
+
+	<dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.32</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+            <version>2.32</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>2.32</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
+9. DDL ....................................................
+
+create database SWT;
+use SWT;
+
+create table Book 
+(
+  Isbn char(13) primary key,
+  Title nvarchar(50) not null,
+  Author nvarchar(50) not null,
+  Edition int,
+  PublishedYear int
+);
+
+insert into Book values ('2518407786529', N'The Alchemist (Nhà giả kim)', N'Paulo Coelho', 1, 2013);
+insert into Book values ('6911225907262', N'Tuổi Trẻ Đáng Giá Bao Nhiêu', N'Rosie Nguyễn', 2, 2018);
+insert into Book values ('2425402340697', N'Đời Ngắn Đừng Ngủ Dài', N'Robin Sharma', 2, 2014);
+
+
+select * from Book;
+
+delete from Book where isbn = '2436636288761';
+
+------------------------------------------------------------
+public class DBUtil {
+
+    public static Connection makeConnection() {
+        Connection conn = null;
+        try {
+
+            String dbURL = "jdbc:sqlserver://TRUONG-LANG\\SQLEXPRESS;databaseName=SWT";
+            String user = "sa";
+            String pass = "sa123456";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            conn = DriverManager.getConnection(dbURL, user, pass);
+            //System.out.println("Connect to DB successfully");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return conn;
+    }
+
+    public static void closeConnection(Connection conn) {
+
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBUtil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////
+
+    public static void main(String[] args) throws SQLException {
+        
+        System.out.println("This is to test if we can connect to SQLServer");
+        Connection conn = makeConnection();
+        DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
+        System.out.println("Driver name: " + dm.getDriverName());
+        System.out.println("Driver version: " + dm.getDriverVersion());
+        closeConnection(conn);
+    }
+}
+
+------------------------------------------------------------
+
+
+
+10. LOG file ....................................................
+
+Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+
+11. JSON using JACKSON ....................................................
+
+	import com.fasterxml.jackson.core.JsonProcessingException;
+	import com.fasterxml.jackson.databind.ObjectMapper;
+
+	ObjectMapper obj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+            jsonStr = obj.writeValueAsString(newBook);
+        } catch (JsonProcessingException ex) {
+
+        }
+        System.out.println("Object Book to JSON: " + jsonStr);
+
+> https://www.baeldung.com/jackson-object-mapper-tutorial
+> https://mkyong.com/java/how-to-convert-java-object-to-from-json-jackson/
+
+
+12. Using Web Services ....................................................
+
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import org.glassfish.jersey.client.ClientConfig;
+
+
+public class BooksTester {
+
+    private static String baseURI = "http://localhost:8080/BooksWS/api/books";
+
+    public static void main(String[] args) {
+        ClientConfig config = new ClientConfig();
+        Client client = ClientBuilder.newClient(config);
+        WebTarget target = client.target(baseURI);
+
+        //Service #1: GET all of the books
+        System.out.println("Call service #1 - GET ALL.................");
+        
+        String responseMsg = target.request().accept(MediaType.APPLICATION_JSON).get(String.class);
+        System.out.println("All of the books");
+        System.out.println(responseMsg);
+
+        //Service #2: GET a specific book
+        System.out.println("Call service #2 - GET A.................");
+        
+        String isbn = "2425402340697";
+        Book book = target.path(isbn).request().accept(MediaType.APPLICATION_JSON).get(Book.class);
+        System.out.println("\nThe book found here");
+        System.out.println(book);
+
+        //Service #3: POST/Add a new book
+        System.out.println("Call service #3 - POST A.................");
+        
+        Book newBook = new Book("2436636288761", "Trên Đường Băng", "Tony Buổi Sáng", 2, 2017);
+        Response responseObj = target.request().post(Entity.entity(newBook, MediaType.APPLICATION_JSON), Response.class);
+        System.out.println("\nHere is the URL to check/GET the new inserted");
+        System.out.println(responseObj.getLocation().toString());
+
+        
+    /*    
+        //Try to finish BookDAO methods before using PUT/DELETE methods
+        
+        //Service #4: PUT/Update an existant book
+        System.out.println("Call service #4 - PUT A.................");
+        
+        newBook = new Book("2436636288761", "Trên Đường Băng", "Tony Buổi Sáng. NXB Trẻ (tái bản)", 5, 2020);
+        String newIsbn = "2436636288761";
+        responseObj = target.path(newIsbn).request().put(Entity.entity(newBook, MediaType.APPLICATION_JSON), Response.class);
+        System.out.println("\nThe update status: " + responseObj);
+
+        
+        //Service #5: DELETE/Remove an existant book
+        System.out.println("Call service #5 - DELETE A.................");
+        
+        isbn = "2436636288761";
+        responseObj = target.path(isbn).request().delete(Response.class);
+        System.out.println("\nThe delete status: " + responseObj);
+        
+        //Extra: ArrayList/Object to JSON 
+        ObjectMapper obj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+            jsonStr = obj.writeValueAsString(newBook);
+        } catch (JsonProcessingException ex) {
+
+        }
+        System.out.println("Object Book to JSON: " + jsonStr);
+        
+    */
+    
+    }
+
+}
+
+
+13. SWT Book Store (Book Client) ....................................................
+
+SEARCH FORM .....................................................
+
+	<h3>Search Book </h3>
+        <form action="search.do" method="POST">
+            <label>ISBN: </label>
+            <input name="isbn">            
+            <input type="submit" value="Search">
+        </form>
+ 
+SEARCH SERVLET .....................................................................
+    
+     public Book getABook(HttpServletRequest request) {
+
+        String baseURI = "http://localhost:8080/BooksWS/api/books";
+
+        ClientConfig config = new ClientConfig();
+        Client client = ClientBuilder.newClient(config);
+        WebTarget target = client.target(baseURI);
+
+        String isbn = request.getParameter("isbn");
+
+        //gọi service để tìm 1 cuốn sách ta cần thêm tham số {isbn} đưa vào
+        //do đó hàm gọi cần bổ sung thêm .path(mã-sách-đưa-vào)
+        //tương đương gọi qua url .../api/books/mã-sách-đưa-vào
+        Book book = target.path(isbn).request().accept(MediaType.APPLICATION_JSON).get(Book.class);
+
+        Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, "HoangNT checkpoint > SWT Book Store > Get a book: " + book);
+        //gọi thầm tên em, in kết quả cuốn sách tìm thấy vào log file để kiểm tra
+
+        return book;
+    }
+
+    public List<Book> getAllBooks() {
+
+        String baseURI = "http://localhost:8080/BooksWS/api/books";
+
+        ClientConfig config = new ClientConfig();
+        Client client = ClientBuilder.newClient(config);
+        WebTarget target = client.target(baseURI);
+
+        String booksJson = target.request().accept(MediaType.APPLICATION_JSON).get(String.class);
+
+        List<Book> books = null;
+        try {
+            books = Arrays.asList(new ObjectMapper().readValue(booksJson, Book[].class));
+            //gọi Jackson để convert mảng các JSON object thành List<Book>
+
+        } catch (JsonProcessingException ex) {
+            Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        Logger.getLogger(BookList.class.getName()).log(Level.SEVERE, "HoangNT checkpoint > SWT Book Store > Get the book list: " + books);
+        //gọi thầm tên em, in kết quả danh sách cuốn sách vào log file để debug
+
+        return books;
+    }
+
+
+
+    	response.setContentType("text/html;charset=UTF-8");
+
+        Book book = getABook(request);
+
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>The book info</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h5>Debug info: This Servlet BookList is invoked from " + request.getContextPath() + "</h1>");
+            if (book == null) {
+                out.println("<h1>The book not found!!!</h1>");
+            } else {
+                out.println("<h1>The book you are looking for!!!</h1>");
+                out.println("<table border='1px' style='border-collapse: collapse'>"
+                        + "<tr>"
+                        + "<th>ISBN</th>"
+                        + "<th>Title</th>"
+                        + "<th>Author</th>"
+                        + "<th>Edition</th>"
+                        + "<th>Year</th>"
+                        + "</tr>"
+                        + "<tr>"
+                        + "<td>" + book.getIsbn() + "</td>"
+                        + "<td>" + book.getTitle() + "</td>"
+                        + "<td>" + book.getAuthor() + "</td>"
+                        + "<td>" + book.getEdition() + "</td>"
+                        + "<td>" + book.getPublishedYear() + "</td>"
+                        + "</tr>"
+                        + "</table>");
+            }
+
+            out.println("<br><a href='search.html'>Return to the search page</a>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+
+
+ADD/CREATTE FORM .....................................................
+
+<h3>Book creating > Input the book info</h3>
+        <form action="create.do" method="POST">
+            <table>		
+                <tr>			
+                    <td>ISBN:</td>			
+                    <td><input name="isbn"></td>		
+                </tr>
+                <tr>
+                    <td>Title:</td>			
+                    <td><input name="title"></td>		
+                </tr>
+                <tr>
+                    <td>Author:</td>			
+                    <td><input name="author"></td>		
+                </tr>
+                <tr>
+                    <td>Edition:</td>			
+                    <td><input type="number" name="edition"></td>		
+                </tr>
+                <tr>
+                    <td>Published Year:</td>			
+                    <td><input type="number" name="publishedYear"></td>		
+                </tr>
+                <tr>
+                    <td></td>			
+                    <td><input type="submit" value="Save new book"></td>		
+                </tr>
+            </table>
+        </form> 
+
+ADD/CREATTE SERVLET .....................................................................
+
+     public int addBook(HttpServletRequest request) {
+
+        String baseURI = "http://localhost:8080/BooksWS/api/books";
+
+        ClientConfig config = new ClientConfig();
+        Client client = ClientBuilder.newClient(config);
+        WebTarget target = client.target(baseURI);
+
+        String isbn, title, author;
+        int edition, publishedYear;
+        isbn = request.getParameter("isbn");
+        title = request.getParameter("title");
+        author = request.getParameter("author");
+        edition = Integer.parseInt(request.getParameter("edition"));
+        publishedYear = Integer.parseInt(request.getParameter("publishedYear"));
+
+        Book newBook = new Book(isbn, title, author, edition, publishedYear);
+
+        //từ đường dẫn chính gọi thêm /create để vào POST API create()
+        Response responseObj = target.path("create").request().post(Entity.entity(newBook, MediaType.APPLICATION_JSON), Response.class);
+        Logger.getLogger(BookAdding.class.getName()).log(Level.SEVERE, "HoangNT checkpoint > SWT Book Store > The book before inserting: " + newBook.toString());
+        Logger.getLogger(BookAdding.class.getName()).log(Level.SEVERE, "HoangNT checkpoint > SWT Book Store > The adding status: " + responseObj.getStatusInfo().toString());
+
+        return responseObj.getStatus();
+    }
+
+
