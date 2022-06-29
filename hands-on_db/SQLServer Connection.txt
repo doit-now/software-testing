@@ -1,0 +1,15 @@
+ Connection conn = null;
+ try {
+
+            String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=SWT;encrypt=true;trustServerCertificate=true";
+            String user = "sa";
+            String pass = "sa123456";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            conn = DriverManager.getConnection(dbURL, user, pass);
+            //System.out.println("Connect to DB successfully");
+ } catch (Exception ex) {
+            ex.printStackTrace();
+}
+
+String dbURL = "jdbc:sqlserver://TRUONG-LANG\\SQLEXPRESS;databaseName=SWT;encrypt=true;trustServerCertificate=true";
+

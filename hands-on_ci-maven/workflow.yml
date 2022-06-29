@@ -1,0 +1,44 @@
+name: CI with GitHub Actions using Maven and JUnit | © 2022 by giao.lang
+
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+on:
+  push:
+    branches: [ main ] # Lấy code từ nhánh main nếu có ai push code lên  
+  pull_request:
+    branches: [ main ] # Lấy code từ nhánh main nếu có ai gửi pull request  
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs: # Những công việc dev làm thường ngày: lấy code, build, chạy test, đóng gói, gửi build...
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Check-out repository # Lấy code từ kho thảy vào máy ảo của GitHub chuẩn bị build ở bước sau
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 18 
+        uses: actions/setup-java@v3 # Khai báo cần dùng JDK để build
+        with:
+          java-version: '18' # Khai báo sử dụng phiên bản JDK 18 để build
+          distribution: 'temurin'
+          cache: maven
+     
+      - name: Build project with Maven
+        run: mvn -B package --file pom.xml # Quá trình build sẽ cần đến file cấu hình pom.xml
+      
+      - name: Distribute jar-war file # Gửi file .jar .war đi đâu, CD nhảy vào ...
+        run: mkdir staging && cp target/*.jar staging # tạo thư mục staging chứa file .jar .war sau khi build      
+     
+      - name: Make hyperlink to jar-war file # Tạo hyperlink để download build 
+        uses: actions/upload-artifact@v1
+        with:
+          name: 1.0-SNAPSHOT.jar # Bản build được đánh version 1.0-SNAPSHOT
+          path: staging
+
+# End of CI workflow file
