@@ -1,0 +1,29 @@
+1. KẾT NỐI TỚI SQL SERVER ********************************************
+- Phần mã hoá (nếu có) liên quan đến jdbc.jar ở các phiên bản sau này (ver. 10.x trở lên)
+
+String dbURL = "jdbc:sqlserver://TRUONG-LANG\\SQLEXPRESS;databaseName=Bookstore;encrypt=true;trustServerCertificate=true;";  //okie
+String dbURL = "jdbc:sqlserver://TRUONG-LANG;databaseName=Bookstore;encrypt=true;trustServerCertificate=true;";  //okie
+String dbURL = "jdbc:sqlserver://TRUONG-LANG:1433;databaseName=Bookstore;encrypt=true;trustServerCertificate=true;";  //okie
+String dbURL = "jdbc:sqlserver://TRUONG-LANG\\SQLEXPRESS;databaseName=Bookstore;encrypt=false;";  //okie
+String dbURL = "jdbc:sqlserver://localhost;databaseName=Bookstore;encrypt=true;trustServerCertificate=true";  //okie
+String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=Bookstore;encrypt=true;trustServerCertificate=true";  //okie
+String dbURL = "jdbc:sqlserver://localhost;databaseName=Bookstore;encrypt=false";  //okie
+
+2. CẤU HÌNH TOMCAT ********************************************
+
+> CATALINA_home/conf/tomcat-users.xml
+> 
+    <role rolename="manager"/>
+    <role rolename="admin"/>
+    <role rolename="manager-gui"/>
+    <role rolename="manager-script"/>
+    <role rolename="manager-jmx"/>
+    <role rolename="manager-status"/>
+    <user username="sa" password="sa123456" roles="manager,admin,manager-gui,manager-script,manager-jmx,manager-status" />
+
+> CATALINA_home/conf/server.xml
+>
+ <Connector port="6969" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+
