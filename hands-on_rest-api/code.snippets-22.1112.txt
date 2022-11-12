@@ -1,0 +1,199 @@
+﻿WEB SERVICES | Version 22.1112 | © 2022 by giáo.làng | fb/giao.lang.bis
+
+-1. JSON Sample for books ....................................................
+
+{"isbn":"2436636288761","title":"Trên Đường Băng","author":"Tony Buổi Sáng","edition":2,"publishedYear":2017}
+{"isbn":"6911225907262","title":"Tuổi Trẻ Đáng Giá Bao Nhiêu","author":"Rosie Nguyễn","edition":2,"publishedYear":2018}
+{"isbn":"8788427845641","title":"Đừng Chạy Theo Số Đông","author":"Kiên Trần","edition":1,"publishedYear":2020}
+{"isbn":"5265552974765","title":"Làm Người Thú Vị","author":"TS. Edward De Bono ","edition":1,"publishedYear":2020}
+{"isbn":"4018690253374","title":"Sống Thực Tế Giữa Đời Thực Dụng","author":"Dịch giả B.Nhung","edition":1,"publishedYear":2018}
+{"isbn":"7292086764911","title":"Những Cô Gái Tốt Đều Phải Sống Rực Rỡ","author":"Yến Lăng Dương","edition":1,"publishedYear":2020}
+{"isbn":"8980075329379","title":"Tâm Tĩnh Lặng, Miệng Mỉm Cười","author":"Dịch giả N.T.Loan","edition":1,"publishedYear":2020}
+
+
+0. JDBC Dependency ....................................................
+
+Sử dụng JDBC phiên bản trùng với phiên bản JDK/JRE đang cài trên máy
+
+<dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>11.2.1.jre18</version>
+        </dependency>
+ 
+
+1. DDL ....................................................
+
+create database Bookstore;
+use Bookstore;
+
+create table Book 
+(
+  Isbn char(13) primary key,
+  Title nvarchar(50) not null,
+  Author nvarchar(50) not null,
+  Edition int,
+  PublishedYear int
+);
+
+insert into Book values ('2518407786529', N'The Alchemist (Nhà giả kim)', N'Paulo Coelho', 1, 2013);
+insert into Book values ('6911225907262', N'Tuổi Trẻ Đáng Giá Bao Nhiêu', N'Rosie Nguyễn', 2, 2018);
+insert into Book values ('2425402340697', N'Đời Ngắn Đừng Ngủ Dài', N'Robin Sharma', 2, 2014);
+
+select * from Book;
+
+3. DBUtil class ....................................................
+
+- Lưu ý thay thế tên-máy và tên-sqlserver-instance cho phù hợp - phải chuột trên biểu tượng kết nối CSDL trong cửa sổ SQL Server Managerment Studio | Properties | Name
+- Lưu ý thay thế username, password cho phù hợp
+- BẮT BUỘC khởi động SQL Server Browser service (status RUNNING)
+
+- CODE DƯỚI NÀY CHỈ IMPORT CÁC CLASS THUỘC PACKAGE JAVA., JAVA.SQL, JAVA.UTIL 
+
+public class DBUtil {
+
+    public static Connection makeConnection() {
+        Connection conn = null;
+        try {
+
+            String dbURL = "jdbc:sqlserver://TRUONG-LANG\\SQLEXPRESS;databaseName=Bookstore;encrypt=true;trustServerCertificate=true;";
+            String user = "sa";
+            String pass = "sa123456";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            conn = DriverManager.getConnection(dbURL, user, pass);
+            //System.out.println("Connect to DB successfully");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return conn;
+    }
+
+    public static void closeConnection(Connection conn) {
+
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBUtil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////
+
+    public static void main(String[] args) throws SQLException {
+        
+        System.out.println("This is to test if we can connect to SQLServer");
+        Connection conn = makeConnection();
+        DatabaseMetaData dm = (DatabaseMetaData) conn.getMetaData();
+        System.out.println("Driver name: " + dm.getDriverName());
+        System.out.println("Driver version: " + dm.getDriverVersion());
+        closeConnection(conn);
+    }
+}
+
+4. BookDAO class ....................................................
+
+public class BookDAO implements Serializable {
+
+    private static BookDAO instance;
+    private Connection conn = DBUtil.makeConnection();
+
+    // Cấm new trực tiếp BookDAO
+    //Chỉ new BookDAO qua hàm static getInstance() để quản lí được số object/instance đã new - SINGLETON DESIGN PATTERN
+    private BookDAO() {
+    }
+
+    public static BookDAO getInstance() {
+
+        if (instance == null) {
+            instance = new BookDAO();
+        }
+        return instance;
+    }
+
+    // Lấy ra tất cả sách trong kho
+    public List<Book> getAll() {
+
+        PreparedStatement stm;
+        ResultSet rs;
+
+        List<Book> bookList = new ArrayList();
+        try {
+
+            String sql = "SELECT * FROM BOOK";
+            stm = conn.prepareStatement(sql);
+            
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                bookList.add(new Book(rs.getString("Isbn"),
+                        rs.getString("Title"),
+                        rs.getString("Author"),
+                        rs.getInt("Edition"),
+                        rs.getInt("PublishedYear")));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bookList;
+    }
+
+    // Lấy ra một cuốn sách dựa trên mã sách
+    public Book getOne(String isbn) {
+
+        PreparedStatement stm;
+        ResultSet rs;
+
+        try {
+
+            String sql = "SELECT * FROM BOOK WHERE Isbn = ?";
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, isbn);
+
+            rs = stm.executeQuery();
+            if (rs.next()) {
+                return new Book(rs.getString("Isbn"),
+                        rs.getString("Title"),
+                        rs.getString("Author"),
+                        rs.getInt("Edition"),
+                        rs.getInt("PublishedYear"));
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    // Lấy ra các cuốn sách của tác giả nào đó
+    public List<Book> getAllByAuthor(String author) {
+
+        PreparedStatement stm;
+        ResultSet rs;
+
+        List<Book> bookList = new ArrayList();
+
+        try {
+
+            String sql = "SELECT * FROM BOOK WHERE Author = ?";
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, author);
+
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                bookList.add(new Book(rs.getString("Isbn"),
+                        rs.getString("Title"),
+                        rs.getString("Author"),
+                        rs.getInt("Edition"),
+                        rs.getInt("PublishedYear")));
+            }
+            return bookList;
+
+        } catch (Exception ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+
+
