@@ -1,0 +1,175 @@
+GIẢI NGỐ GITHUB - GITHUB FOR BEGINER
+
+Để chơi với GH ta cần làm những việc sau:
+1. CẦN CÓ 1 ACCOUNT TRÊN GITHUB/GITLAB/BITBUCKET
+   - account gồm: email; pass; tên-git-hub-của-bạn - là 1 phần của URL
+   - dùng email cá nhân; 
+   - tên GH dễ gọi, dễ đọc, viết chữ thườngg 
+
+2. TẢI TOOL VỀ MÁY ĐỂ GÕ LỆNH ĐỒNG BỘ CODE LÊN SERVER GH
+   - tải tool ở: https://git-scm.com/downloads (SCM là gì???)
+   - khi cài đặt, nhớ 
+       - tick 3 dấu checkbox (Desktop, Explorer...)
+       - chọn kho main, thay vì để mặc định master
+   - sau cài sẽ có GitBash nằm ở desktop, và ở nút phải chuột!!! 
+     dùng phải chuột để vào nhanh lệnh git ở đúng project mình
+
+3. TẠO 1 PROJECT RỖNG TRÊN SERVER - 1 KHO RỖNG TRÊN SERVER - EMPTY REPOSITORY
+   - tên kho 100% trùng tên (hoa thường) với tên Project ở Local 
+     mà mình sẽ đồng bộ lên!!!
+   - ko tích chọn bất cứ option nào ở màn hình tạo mới kho, chỉ chọn duy 
+     nhất public/private 
+   - đường dẫn trỏ đến tên kho sẽ là:
+
+        https://tên-gh-của-bạn/tên-kho.git
+
+     đường dẫn này đưa cho bạn bè download source về
+     đường dẫn này để chính mình đồng bộ code lên
+     đường dẫn này để cho bạn teamember cùng vào đóng góp/đồng bộ code của
+     hắn lên project nhóm!!!
+
+4. TẠO 1 PROJECT Ở MÁY LOCAL - MÁY MÌNH
+   - tên project trùng 100% tên kho ở xa (remote) trên GH mà mình sẽ chuẩn 
+     bị đồng bộ
+   - thoải mái add source, bất cứ thứ gì vào thư mục/project này
+   - chọn loại dự án là Ant, Maven, .NET, JS đều như nhau
+
+   - tạo 2 file cấu hình quan trọng. Ko bắt buộc, NHƯNG AI CŨNG LÀM!!!
+       
+        * .gitignore: file text dùng để liệt kê những thư mục, tập tin nào
+                      trong project ko đc đồng bộ - upload lên server!!!
+                      ko có file này, nguyên thư mục project lên server
+                      target\ build\ dist\ lên làm gì???
+                      Để tạo nhanh và chính xác file này; ta vào 
+                      gitignore.io, khai báo IDE đang dùng, loại dự án
+                      đang dùng, và ấn nút generate để có đc nội dụng text
+                      copy & paste vào notepad và save thành .gitignore
+                      ĐẶT VÀO PROJECT, THƯ MỤC PROJECT LOCAL
+         * README.md: chính là file text đóng vai trang index.html trang  
+                      chủ của 1 cái kho. Dùng để quảng cáo cho cái kho trên
+                      server. File này dùng cú pháp "HTML siêu nhẹ"
+                      # ~ <h1>, 
+                      * ~ <ul> <li> 
+                      ![]() ~ <img alt= src=>
+
+                      Cú pháp này chính là 1 ngôn ngữ ghi chú/đánh dấu
+                      tựa như HTML (markup language)
+                      tên là: MarkDown, Google "markdown là gì" "cú pháp
+                      markdown" học các thẻ độ file README.md cho đẹp
+
+                      NHÉT THÊM HUY CHƯƠNG, BADGE CHO NGẦU!!!
+                      PROJECT PHẢI THOẢ 1 VÀI TIÊU CHUẨN THÌ MỚI ĐC CẤP
+                      HUY CHƯƠNG ĐỂ GẮN VÀO README!!!
+
+5. NHÓM LỆNH 1 - NHÓM LỆNH XÀI 1 LẦN DUY NHẤT CHO 1 MÁY
+                 CHỈ GÕ LẠI NẾU CÀI LẠI WIN
+                 CHỈ GÕ LẠI NẾU ĐỔI INFO ACCOUNT
+                 CHỈ GÕ NẾU MƯỢN MÁY BẠN ĐỒNG BỘ CODE, BẠN CHƯA CÀI GIT
+
+   >>>>> git config --global user.name <tên-github-của-bạn>
+         git config --global user.email <email-github-của-bạn>
+
+   - LÁT HỒI, khi đồng bộ code lần đầu tiên sẽ bị hỏi pass, bị hỏi login 
+     để xác thực, login đi, và Windows tự remember pass để lần sau ko hỏi
+
+   - NẾU MUỐN XOÁ thông tin account GH đã remember, vào ô search của 
+     Windows, gõ từ Credential -> Click chọn Credentials Manager ->
+                               -> chọn tiếp Windows Credentials để
+                                  tìm đến GitHub account -> Remove!!!
+                 [1 MÁY 1 LỆNH NÀY!!!!!!!!!!!!!!!!!!!!!!]    
+ 
+6. NHÓM LỆNH 2 - NHÓM LỆNH XÀI 1 LẦN DUY NHẤT CHO 1 PROJECT LOCAL
+                 CHỈ GÕ 1 LẦN VỚI 1 PROJECT MỚI TẠO
+                 NẾU TẠO PROJECT MỚI, THÌ PHẢI GÕ LẠI
+                 
+                 [1 PROJECT 1 LỆNH NÀY!!!!!!!!!!!!!!!!!!!!!!!!]
+
+    >>>>> git init 
+
+                 BẮT BUỘC PHẢI ĐỨNG Ở THƯ MỤC PROJECT THÌ MỚI ĐC GÕ LỆNH
+                 NÀY, VÌ NẾU ĐỨNG SAI NƠI, UPLOAD/ĐỒNG BỘ NGAY NƠI SAI!!!
+                 HỆ THỐNG SẼ TỰ TẠO RA 1 THƯ MỤC ẨN TRONG THƯ MỤC PROJECT
+                 TÊN LÀ .GIT
+                 - trong đây lưu lại lịch sử thay đổi của project trên 
+                   server và của local của tất cả các dev trong dự án!!!
+                   CẤM TUYỆT ĐỐI XOÁ SỬA TRONG ĐÂY - XEM OKIE
+ 
+         
+7. NHÓM LỆNH 3 - NHÓM LỆNH LẦN ĐẦU TIÊN ĐỒNG BỘ CODE LÊN SERVER
+               - NHÓM LỆNH NÀY CŨNG CHỈ XÀI 1 LẦN CHO 1 PROJECT
+                 (LEADER LẦN ĐẦU ĐƯA PROJECT LÊN SERVER, HAY CÁ NHÂN MÌNH
+                         LẦN ĐẦU ĐƯA PROJECT LÊN SERVER)
+               - BẮT BUỘC PHẢI ĐỨNG Ở THƯ MỤC PROJECT    
+
+               [1 PROJECT 1 CỤM LỆNH NÀY!!!!!!!!!!!]
+
+   >>>>> git add . (nhớ là có 3 loại add
+                    git add . lệnh này sẽ đưa project lên server
+                              và nó đưa luôn tập tin nào có dấu . ở đầu 
+                              tên gọi. 
+                              Vì project mình có file .gitignore, phải xài
+                              lệnh này thì file ignore mới lên server
+                              khi thằng bạn team down code về để làm máy
+                              nó, thì nó có sẵn file ignore này
+                              nó ko upload rác lên server, y chang như mình
+                            
+                    git add * hay dùng nhất, nhưng nó ko thèm đưa ai trong
+                              tên có dấu . đứng đầu 
+
+                    git add UserDAO.java         
+
+       git commit -m "lí do sửa code ghi ngắn gọn here!!!"  
+                     //"ahihi" khi đi thực tập, ĂN ĐÒN!!!
+                     lí do sẽ lên server, ko sửa đc!!!
+   
+       git branch -M main   //báo với GH rằng, ở local, project đang code
+                            //tao gọi là main (ngày xưa là master)
+
+       git remote add origin https://github.com/đến-tên-kho-code
+                            //báo với GH rằng, kho code trên server tạo
+                            //gọi là origin
+
+       git push -U origin main  //đưa code từ main lên origin 
+                                //code đc chính thức đồng bộ
+
+       SẼ BỊ HỎI PASSWORD/LOGIN CHO LẦN ĐẦU TIÊN LÀM CHUYỆN ĐỒNG BỘ
+       SAU ĐÓ WINDOWS TỰ NHỚ ACCOUNT!!!
+
+8. NHÓM LỆNH HUYỀN THOẠI - XÀI HÀNG NGÀY ĐỂ ĐỒNG BỘ CODE
+
+      >>>>> git add *
+            git commit -m "lí do sửa code ghi ngắn gọn"
+            git push 
+
+9. NHÓM LỆNH TEAMWORK, DOWNLOAD CODE
+   - THẰNG BẠN/AI ĐÓ MUỐN LẤY SOURCE, LẤY THOY, KO SỬA LÊN SERVER
+     - đưa URL kho code cho nó download load
+           https://github.com/tên-gh-của-bạn/tên-kho.git
+     - đưa URL để download về và để sẵn sàng sửa code và đồng bộ - team
+     
+     >>>>>  git clone tên-kho-ở-server (https://...)
+     MÁY THẰNG BẠN CÓ NGUYÊN CON PROJECT GỒM: SOURCE, .GIT, .gitignore, README.md
+
+   - Vào GH Web, vào kho cấu hình/invite thằng bạn vào sửa code!!!
+
+10. NHÓM LỆNH XỬ LÍ ĐỤNG ĐỘ, XUNG ĐỘT CODE - CONFLICT
+   - git pull   //đồng bộ server về local trước
+   - rồi up lại code của mình lên sau!!!
+ 
+
+   
+  
+
+  
+
+
+
+
+
+  
+ 
+                   
+  
+ 
+
+
