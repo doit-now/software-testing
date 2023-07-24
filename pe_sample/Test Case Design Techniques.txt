@@ -1,0 +1,356 @@
+CÁC KĨ THUẬT THIẾT KẾ TEST CASE - TEST CASE DESIGN TECHNIQUES
+(các cách thức, cách làm để có được các test case, dùng cho việc
+  kiểm thử chất lượng phần mềm)
+
+1. ĐỊNH NGHĨA VỀ TEST CASE, TEST CASE LÀ GÌ?
+- là cái mô phỏng/giả lập lại các tình huống 
+    sử dụng hàm/method/class,    sử dụng app
+        của developer        của    user
+
+  để kiểm tra xem hàm/method/class          hoặc app có ngon, mlem, yummy hay ko???
+
+
+  bằng cách chuẩn bị sẵn các bộ data - 
+     gồm input data (dữ liệu đầu vào)   và  expected value (kết quả xử lí kì vọng) 
+
+* MỘT TEST CASE SẼ GỒM 3 + 1 THÀNH PHẦN LỚN SAU:
+-> DỮ LIỆU ĐẦU VÀO (INPUT)
+-> DỮ LIỆU ĐẦU RA (EXPECTED RESULT)
+-> CÁC BƯỚC/CÁCH SỬ DỤNG HÀM, SỬ DỤNG TÍNH NĂNG (đưa data, nhấn gì, gọi gì, xem trả về) 
+
+-> TEST RUN, TỨC LÀ RUN HÀM, RUN APP THEO CÁC BƯỚC Ở TRÊN ĐỂ VERIFY ĐÚNG SAI CỦA HÀM/APP
+   NHẬN VỀ PASSED HOẶC FAILED   
+
+*VÍ DỤ:
+- test hàm (code) User checkLogin(username, password)   môn PRJ301
+                  long getFactorial(int n)              môn SWT301
+
+  TEST CASES:     user/pass: ok/ok -> ok 
+                             ok/!ok -> !ok
+                             !ok/? -> !ok
+
+                  n < 0 -> CHỬI
+                  n == 0, 1, 2 ... 20 -> TÍNH NGON
+                  n > 20 -> CHỬI       
+
+- test chức năng, tính năng (app)
+                  màn hình Login                        môn PRJ301/PE/Lab
+                                                            SWT301/guru99
+ 
+                  user/pass: ok/ok -> ok    , "Hello <fullname>"
+                             ok/!ok -> !ok  , message...
+                  chỉ ra thêm các steps để thực thi test case vì chức năng thì có UI
+                  - open browser, open website by url, click login form, input, input,  
+                    click, click...
+  
+2. TA CẦN BAO NHIÊU TEST CASE LÀ ĐỦ ĐỂ NÓI RẰNG/GÁY RẰNG HÀM NGON, APP NGON, MLEM?
+*NL2: EXHAUSTIVE TESTING IS NOT POSSIBLE/IS IMPOSSIBLE
+- không thể, ko đủ sức, ko cần thiết phải test hết tất cả các test case (tổ hợp tình huống sử dụng hàm, sử dụng app)  
+- VẬY THÌ CẦN BAO NHIÊU TEST CASE LÀ ĐỦ?
+  HOẶC HỎI TƯƠNG ĐƯƠNG
+  KĨ THUẬT NÀO GIÚP EM THIẾT KẾ VỪA ĐỦ LƯỢNG TEST CASE MÀ VẪN ĐẢM BẢO CHẤT LƯỢNG HÀM/APP?
+
+3. CÁC KĨ THUẬT THIẾT KẾ RA TEST CASE, CÁC KĨ THUẬT CHỌN BỘ DATA ĐẦU VÀO, VỪA ĐỦ
+   (số tổ hợp giá trị đầu vào cho hàm, cho tính năng là vô số)
+- Có nhiều kĩ thuật xây dựng bộ data kiểm thử 
+  (bộ data kiểm thử ứng một tình huống xài hàm/app)
+  trong đó có 3 kĩ thuật nổi bật, hay dùng như sau
+
+3.1 EQUIVALANCE PARTITIONING 
+    (kĩ thuật phân vùng tương đương - chia nhóm/cụm/khu vực/vùng)
+
+3.2 BOUNDARY VALUE ANALYSIS
+    (kĩ thuật phân tích giá trị biên - chặn trên chặn dưới, miền/khoảng/đoạn giá trị)
+
+3.3 DECISION TABLES
+    (bảng quyết định, tổ hợp các trạng thái đúng sai để có hành động tương ứng)
+
+3 KĨ THUẬT NÀY CÓ BÀ CON VỚI NHAU, CỐT LÕI NẰM Ở PHƯƠNG PHÁP 3.1 EQUI...
+3 KĨ THUẬT NÀY XUẤT HIỆN TRONG ĐỀ THI PE SWT301
+
+3.4. USE CASE TESTING THIẾT KẾ BỘ KIỂM THỬ DỰA TRÊN USE CASE
+
+***** Ví dụ về xây dựng bộ data kiểm thử cho
+- hàm long getFactorial(int n)
+- SRS/requirements cho cái hàm này là: giai thừa chỉ dành cho số +
+                                       0!, 1! = 1, n! = 1.2.3...n
+                                       n < 0, n > 20 ko tính đc: âm, tràn kiểu long
+
+* XÂY DỰNG, VẼ RA MIỀN GIÁ TRỊ DÀNH CHO BIẾN ĐẦU VÀO, CHO Ô INPUT TRÊN TRANG WEB/FORM/PAGE                 
+            THƯỜNG LÀ VẼ TRỤC SỐ, HOẶC TẬP HỢP (OVAL)
+
+* ĐÁNH DẤU CÁC ĐIỂM TOẠ ĐỘ QUAN TRỌNG TRONG REQS (CÁC LỆNH ĐIỀU KIỆN, GIẢ ĐỊNH,
+                                                            IF ELSE) 
+* XÁC ĐỊNH CÁC KHU VỰC, TẬP DATA MÀ Ở ĐÓ HÀM/APP XỬ LÍ TƯƠNG ĐỒNG, CÙNG MỘT CÁCH XỬ LÍ,
+  CÙNG LOGIC PHÍA SAU -> GỌI LÀ PARTITION            
+
+
+
+   N: <.............. 0 ........................... 20 .....................>                            
+                      *      hàm getF() tính ngon   *  
+     hàm getF CHỬI   )[                             ](  hàm getF() CHỬI   
+            
+
+ CÓ 3 PARTTION ỨNG VỚI 3 PHÂN VÙNG 3 KHU VỰC MÀ TRONG MỖI KHU VỰC THÌ HÀM/APP XỬ LÍ 
+ TƯƠNG ĐƯƠNG NHAU, TƯƠNG ĐỒNG CÁCH XỬ LÍ TRONG 1 KHU VỰC 
+
+ ĐIỂM GIAO KHU VỰC, LÀ NƠI MÀ HÀM/APP THAY ĐỔI CÁCH XỬ LÍ, 
+ THÌ ĐC GỌI LÀ BIÊN GIỚI, GIÁ TRỊ BIÊN - BOUNDARY
+
+  N: <.............. 0 ........................... 20 .....................>                            
+                     *                              * 
+                  boundary                       boundary
+              
+          part                  part                            part
+
+
+  N: <.............. 0 ........................... 20 .....................>                            
+                  -  *  +                        -  *  + 
+                  boundary                       boundary
+              
+          part                  part                            part
+
+  N:             -1 0 1                         19 20 21  -> GIÁ TRỊ BIÊN, CẬN BIÊN       
+                                                             NƠI CÓ SỰ THAY ĐỔI RÕ RÀNG
+                                                             VỀ LOGIC XỬ LÍ CỦA HÀM/APP
+   
+         BOUNDARY VALUE ANALYSIS: TÌM GIÁ TRỊ BIÊN VÀ CẬN BIÊN -> TEST CASE 
+
+-----------------
+  N: <.............. 0 ........................... 20 .....................>                            
+                  -  *  +                        -  *  + 
+                  boundary                       boundary
+                     |  
+          part       |           part               |             part
+                     |                              |
+     ko hợp lệ       )          hợp lệ              |          ko hợp lệ        
+     
+NHÌN VỀ TRẠNG THÁI CỦA BIẾN, THAY VÌ NHÌN VALUE, CŨNG CHỈ CÓ 2 TRẠNG THÁI CỦA BIẾN/VALUE
+> ĐÚNG/SAI, HỢP LỆ/KO HỢP LỆ
+> CÓ THỂ CÒN 1 TRẠNG THÁI LÀ: CHƯA XÁC ĐỊNH, KO XÁC ĐỊNH, CHƯA BIẾT
+
+N: HỢP LỆ/TRUE/T     -> HÀM TÍNH NGON!!!
+N: KO HỢP LỆ/FALSE/F -> HÀM SẼ CHỬI!!!
+
+---------------------------
+* TEST MÀN HÌNH LOGIN VỚI USER/PASSWORD ĐƯA VÀO, CÓ NHỮNG BỘ DATA NÀO??? NHÌN THEO HỢP LỆ VÀ KO HỢP LỆ, THAY VÌ CHO VÍ DỤ LÀ chuỗi hoangt/denhong$ -> login thành công
+                                         hoangnt/blackpink$ -> login thất bại, chửi...
+                                         ...
+USERNAME     : true  true   false   
+PASSWORD     : true  false  true 
+
+ACTION/RESULT:  
+THÀNH CÔNG   :   X
+THẤT BẠI     :         x      x
+CHỬI USER    :                x 
+CHỬI PASS    :         x
+CHỬI CẢ HAI  :  
+
+============================================================
+4. CÁC MỨC ĐỘ KIỂM THỬ - LEVELS OF SOFTWARE TESTING
+*NL3: EARLY TESTING: DOCUMENT, CODE CX ĐC KIỂM THỬ, KO CẦN CHỜ ĐẾN LÚC CÓ APP
+
+-----------------------------------------------------------------------> TIME
+PROJECT                                                              PRODUCT
+CODE                                                                   APP
+hàm(), method()                                                      FEATURE  
+
+
+hàm(), method() ...... hàm() + API + UI     ..... chức năng        
+                     (chức năng, tính năng)       chức năng
+                                                  chức năng
+CODE                    CODE/"APP"                SYSTEM/APP    -> DEPLOY CHO USER DÙNG 
+                                                                   THỬ, TRIAL, PREVIEW
+UNIT TEST           INTEGRATION TEST              SYSTEM TEST      UAT USER ACCEPTANCE
+                                                                            TEST
+kiểm thử             kiểm thử tích hợp        kiểm thử hệ thống     kiểm thử chấp nhận
+đơn vị (code)   
+
+JUNIT, NUNIT, MOCHA       SELENIUM               AUTOMATION, MANUAL: SELENUM, APPIUM,
+                                                                     KATALON  
+                                                                     JMETER,...
+CÂU 1                   CÂU 2                                    CÂU 3
+=====================
+ĐỀ PE YÊU CẦU VIẾT TEST CASE CHO 4 MỨC ĐỘ KIỂM THỬ, CHUẨN BỊ BỘ DATA VÀ CÁC STEPS VÀ TEST RUN
+DÙNG 3 PHƯƠNG PHÁP THIẾT KẾ DATA: EQUIVALENCE..., BOUNDARY..., DECISION...
+
+ 
+ 
+============================
+GHI CHÚ CHO VIỆC THIẾT KẾ CÁC BỘ DATA TEST CASE KHI DÙNG P/P 
+PHÂN TÍCH GIÁ TRỊ BIÊN (BOUND...) VÀ PHƯƠNG PHÁP PHÂN VÙNG TƯƠNG ĐƯƠNG (EQUI..)
+VÀ ÁP DỤNG CÁI TEMPLATE EXCEL VỪA LÀM
+* ƯU ĐIỂM
+- TA CÓ BỘ DATA ĐẦY ĐỦ, RÕ RÀNG, CỤ THỂ, BIẾT CÁCH GÕ VALUE GÌ LUÔN
+
+* NHƯỢC ĐIỂM
+- NHIỀU VALUE CHO MỖI ĐẦU VÀO ĐỂ COVER HẾT CÁC TÌNH HUỐNG NHẬP LIỆU/ĐƯA DATA
+  NHƯNG KHI RÁP THÀNH 1 BỘ TEST CASE BẮT ĐẦU GẶP SAI SÓT, KHÓ NHÌN, BỎ SÓT  
+  DO CÓ QUÁ NHIỀU TÌNH HUỐNG ĐỂ GHÉP CẶP!!!
+- HÃY SUY NGHĨ THÊM, KO TEST HÀM, MÀ TEST CHỨC NĂNG/MÀN HÌNH CÓ NHIỀU Ô NHẬP VÀ 1 2 
+  NÚT NHẤN, HÃY XEM:
+  - MỖI Ô NHẬP COI NHƯ LÀ 1 THAM SỐ CỦA HÀM. MÀN HÌNH 10 Ô NHẬP ~ 1O THAM SỐ
+  - 1 NÚT NHẤN, 2 NÚT NHẤN LÀ ỨNG VỚI HÀM
+  - HÀM NHẬN VÀO 10+ THAM SỐ, SỐ TỔ HỢP GHÉP 10+ THAM SỐ CỰC LỚN, VALUE CHO
+    TỪNG THAM SỐ CŨNG CỰC NHIỀU NẾU LIỆT KÊ!!!
+    > XOẮN NÃO THÊM
+
+>>>>> PHÁT HIỆN MỚI MẺ
+- MỖI BIẾN ĐẦU VÀO CỦA HÀM, MỖI Ô NHẬP TRÊN UI/PAGE DÙ VALUE GÕ KIỂU GÌ THÌ CŨNG 
+  CHỈ RƠI VÀO 2 TRẠNG THÁI MÀ THOY: ĐÚNG/SAI, HỢP LỆ/KO HỢP LỆ
+           CÓ THỂ CÓ THÊM THỨ TRẠNG THÁI THỨ 3: EMPTY/KO XÁC ĐỊNH/CHƯA GÕ/CHƯA NHẬP
+                                                N/A: NOT AVAILABLE
+   
+* MỘT Ô NHẬP, 1 THAM SỐ CỦA HÀM CHẤP VIỆC NHẬP DATA LÀ GÌ, CHỈ CÓ 3 TRẠNG THÁI
+  VỀ MẶT VALUE NÓ CHỨA: TRUE, FALSE, N/A 
+
+>>>>> CHỐT HẠ, CHỐT DEAL, CHỐT KÈO: 
+ THAY VÌ XÂY DỰNG BỘ DATA KIỂM THỬ THEO STYLE VALUE CỤ THỂ
+ TA XÂY DỰGN BỘ DATA KIỂM THỬ THEO STYLE NHÌN TRẠNG THÁI/DÙNG TRẠNG THÁI ĐÚNG SAI CỦA
+ VALUE ĐẦU VÀO (VÀO KIỂU GÌ CX CHỈ LÀ ĐÚNG SAI)
+
+ HÀM ĐĂNG KÍ MEMBER NHÌN THEO STYLE ĐÚNG SAI (TRẠNG THÁI VALUE)
+
+ CONDITION                  value (trạng thái)
+
+ username                    T      T     N/A  
+ 
+ password                    T      T     N/A
+
+ phone                       T      F     N/A
+
+ ACTION (APP/HÀM SẼ LÀM GÌ)
+ register successfully 	     X
+ register unsuccessfully            X      X
+ chửi empty                                X
+ chửi invalid                       x	
+ 
+ DECISION TABLE - BẢNG QUYẾT ĐỊNH - TUỲ TRẠNG THÁI CỦA BỘ DATA MÀ TA QUYẾT ĐỊNH 
+                                              CÁCH XỬ LÍ KHÁC NHAU   (decision)  
+ 
+  
+CÂU 2 DONE 
+
+=====================================================
+ĐÁNH GIÁ VỀ PHƯƠNG PHÁP DỰNG BỘ TEST CASE/TEST DATA THEO DECISION TABLE
+* LỢI:
+- nhìn nhanh đc số tổ hợp trạng thái của dữ liệu (đúng sai), thay vì bị rối vì sự kết hợp
+  của các value cụ thể ở Câu 1 (Equi... Bound...) 
+
+* NHƯỢC ĐIỂM
+- nhìn trạng thái data đc đưa vào, thích hợp cho việc test trên 1 màn hình với các thẻ input
+  có sẵn và chấp nhận đầu vào với đúng/sai NHƯNG nó ko thể dễ dàng để mô tả được luồng màn 
+  hình, sự phối hợp giữa các màn hình
+- không có cách để mô tả được 1 câu chuyện phối hợp nhiều màn hình (Lazada: search item, add to cart, manage card, chọn voucher, chọn giao hàng, chọn thanh toán, theo dõi đơn hàng...)
+- trong 1 màn hình nó cũng ko hẳn kể đc câu chuyện: vòng lặp của thao tác, cách data đưa vào 
+  > (Create an order)  -> ko kể đc câu chuyện data mua hàng đc vào hệ thống như thế nào???
+                          nó chỉ biết có data hay chưa, hợp lệ hay ko?
+  > (Login ATM/eBanking) - ko kể đc câu chuyện, sai 3 (5) lần thì khoá account
+
+============================================================
+3.4. USE CASE TESTING THIẾT KẾ BỘ KIỂM THỬ DỰA TRÊN USE CASE (CÂU 3)
+- Các data kiểm thử dựa trên cách dùng app của user trong tương lai 
+  (mình làm app cho doanh nghiệp/ai đó ngoài kia dùng - dùng trong công việc của họ
+   app phải phản ánh/mô phỏng lại/clone lại cách doanh nghiệp đang vận hành)
+
+- Người dùng xài app để giúp cho công việc của họ, việc xài này là 1 câu chuyện đi qua các màn hình, các data đc nhập trên các màn hình, các thao tác nhấn trên các màn hình -> USE CASE
+- Ta sẽ chuẩn bị các bộ data, test case nương theo/clone theo cách xài app của user trong tương lai
+- Kể đc cách hành vi của user trên mỗi màn hình họ dùng!!! KHÁC SO VỚI DECISION TABLE
+                                                           (xem trạng thái data đc đc đưa vào)
+- Test case dựa trên cách xài app của user -> kể đc câu chuyện user dùng
+  > TEST CASE DẠNG NÀY SẼ LÀ DÙNG NGÔN NGỮ TỰ NHIÊN - CON NGƯỜI (3 p/p kia khá technical, toán 
+                                                                 học)
+
+
+CHỐT DEAL: NHÌN DATA ĐÚNG SAI -> CÂU 1, 2, PHƯƠNG PHÁP 1-2-3
+CHỐT DEAL: NHÌN TÍNH NĂNG ĐÚNG SAI, APP ĐÚNG SAI, HÀNH VI DÙNG APP -> CÂU 3, PHƯƠNG PHÁP 4
+                           HÀNH TRÌNH ĐẾN CẢ CÁI DATA ĐÚNG SAI
+
+THIẾT KẾ TEST CASE THEO KỊCH BẢN NGƯỜI DÙNG SẼ DÙNG APP 
+                                (STEP, STEP, STEP, STEP, CÁC BƯỚC XÀI MÀN HÌNH)
+                                 trên mỗi bước hệ thống/app sẽ cần phải trả ra kì vọng gì
+
+
+==========================================================================
+Q.1 Cho đoạn code tìm sai sót của code
+- Đầu bài là 1 hàm, có đầu vào, có mô tả xử lí if else trên các giá trị và return
+- Ta sẽ xem xét các biên - boundary [ đoạn  ] ( khoảng) để kiểm tra > >= < <=
+  LOGIC XỬ LÍ CỦA HÀM ĐỂ TÌM BUG 
+
+* Ví dụ hàm kiểm tra 1 số có là nguyên tố hay ko
+- âm ko tính
+- nhỏ nhất là số 2
+- là số CHỈ chia hết cho 1 và chính nó (chỉ có tối đa 2 ước số: 1 và chính nó)
+
+   boolean isPrime(int n) {
+     if (n < 2)
+       return false;
+     
+     for (int i = 2; i < Math.sqrt(n); i++)
+       if (n % i == 0)
+          return false;  //MÀY TẠCH NẾU MÀY LỠ
+
+     return true; 
+   }
+-------------
+   n = 100? có nguyên tố không??? 
+   //đếm số US, số US > 2 -> tạch 
+   //lỡ tay chia hết với ai đó (ngoài 1 và chính nó) -> tạch NGAY
+   n = 100
+   hỏi: n mày có chia hết cho 2 hem??? em có ->tạch 
+        
+   n = 101
+   hỏi: n mày có chia hết cho 2 hem??? em ko, okie, tao đi tiếp
+                              3        em ko, tiếp
+                              4        em ko, tiếp
+                              ...
+                              100      em ko, KẾT LUẬN 
+    (2 ... N-1) KO DÍNH ĐẾN CHIA HẾT ĐỨA NÀO -> NGUYÊN TỐ
+     LỠ DỌC ĐƯỜNG                            -> KO NGUYÊN TỐ
+
+   KO CẦN XÉT ĐẾN 2 ... N-1
+   HÃY XÉT        2 ... CĂN BẬC 2 CỦA N
+   101 có chia hết cho [2 ... căn bậc 2 của N = 10,]
+    
+
+   boolean isPrime(int n) {
+     if (n < 2)
+       return false;
+     
+     for (int i = 2; i <= Math.sqrt(n); i++)  //HÀM ĐÚNG, DẤU = Ở FOR
+       if (n % i == 0)
+          return false;  //MÀY TẠCH NẾU MÀY LỠ
+
+     return true; 
+   }
+   
+   //HÀM SAI
+   boolean isPrime(int n) {
+     if (n < 2)
+        return false;
+     
+     for (int i = 2; i < Math.sqrt(n); i++)
+        if (n % i == 0)
+           return false;  //MÀY TẠCH NẾU MÀY LỠ
+        else  
+           return true; 
+   }       
+
+=============================
+Q2: UNIT TEST VÀ TEST COVERAGE 100%
+- MỨC ĐỘ BAO PHỦ: CÁC BỘ DATA PHẢI BAO HẾT CÁC TÌNH HUỐNG IF ELSE SWITCH CASE, VÒNG LẶP TRONG CODE  
+
+- TEST CASE BAO PHỦ HẾT CÁC TÌNH HUỐNG XỬ LÍ CỦA HÀM (COVERAGE 100%)
+
+- TEST CASE N ÂM!
+- TEST CASE N 0, 1 (< 2)
+- TEST CASE N 2 (BOUNDARY)    + - 1
+- TEST CASE N 3 (BOUNDARY)
+- TEST CASE N > 3, 1 GIÁ TRỊ NÀO ĐÓ
+
+BAO HẾT TẬP N VÀ CÁC IF ELSE -> 100% COVERAGE
+
+================================
+Q3: INTEGRATION/TEST CASE - DONE
+
+
