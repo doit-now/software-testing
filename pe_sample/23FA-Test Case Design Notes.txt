@@ -1,0 +1,49 @@
+LƯỚT NHANH VỀ MÔN SWT301 - VÀ ĐỀ THI PE - PRACTICAL EXAM (THI THỰC HÀNH KIẾN THỨC MÔN)
+
+SWT301 - NHẬP MÔN KIỂM THỬ PHẦN MỀM -> "ĐI TÌM BUG!!!"
+
+ĐI TÌM BUG CŨNG PHẢI CÓ PHƯƠNG PHÁP CHỨ KO PHẢI CHỈ LÀ MỞ APP LÊN, BẤM LOẠN XẠ HY VỌNG APP VĂNG LỖI!!!!
+
+KIỂM THỬ PHẦN MỀM LÀ ĐƯA APP (GỒM CẢ CODE) VÀO CÁC CÔNG ĐOẠN, VÒNG KIỂM TRA NGHIÊM NGẶT ĐỂ HY VỌNG NÓ VƯỢT QUA ĐC SÁT HẠCH, HOẶC NẾU KO, THÌ LÀ TA TÌM RA SAI SÓT
+ĐỂ SÁT HẠCH PHẦN MỀM, KIỂM THỬ PHẦN MỀM, TA ĐẶT RA NHỮNG TIÊU CHÍ, QUY ĐỊNH, ĐỊNH MỨC MÀ APP PHẢI ĐẠT, VƯỢT QUA!!!
+
+CÁC TIÊU CHÍ, QUY ĐỊNH CỦA VIỆC KIỂM THỬ ĐC THỂ HIỆN QUA CÁC TEST CASE
+>>>>> TEST CASE LÀ GÌ??? (TÌNH HUỐNG KIỂM THỬ)
+            LÀ CÁCH TA GIẢ LẬP VIỆC DÙNG APP CỦA USER
+            LÀ CÁCH TA GIẢ LẬP VIỆC SỬ DỤNG HÀM CỦA CODER/DEVELOPER         
+
+GIẢ LẬP TỨC LÀ DÙNG (HÀM, APP) THEO KIỂU ĐÓNG VAI
+- QC/TESTER GIẢ LÀM USER XÀI APP THEO CÁCH NÀO ĐÓ, ĐỂ BIẾT APP CHẠY ĐÚNG, HOẶC APP CHẠY SAI
+- DEVELOPER GIẢ LÀM GÃ DEV KHÁC, XÀI HÀM CỦA CHÍNH MÌNH VIẾT RA, COI ỔN KO,
+
+KIỂM THỬ APP/HÀM LÀ XÀI APP/HÀM TRƯỚC TOÀN BỘ THIÊN HẠ, ĐỂ COI ĐÚNG SAI, VÀ FIX TRƯỚC KHI ĐEM RA THỊ TRƯỜNG
+
+XÀI PHẢI CÓ PHƯƠNG PHÁP THÌ MỚI DÁM KẾT LUẬN ĐÚNG SAI
+THIẾT KẾ TEST CASE CHÍNH LÀ PHƯƠNG PHÁP
+
+***** TEST CASE LÀ BỘ DATA (INPUT, EXPECTED VALUE) DÙNG ĐỂ KIỂM THỬ 1 HÀM, 1 CHỨC NĂNG (APP)
+                                   VÀ CÁC BƯỚC THỰC HIỆN VIỆC DÙNG BỘ DATA ĐÓ TRÊN CÁI HÀM, CHỨC NĂNG CẦN KT
+- VÍ DỤ: 
+  >>>>> TEST HÀM  getFactorial(int n) -> long
+                                                            n = 5 -> hy vọng hàm trả về 120 
+  >>>>> TEST CHỨC NĂNG LOGIN username/password
+                                      user/pass SAI 5 LẦN -> APP/CHỨC NĂNG LOGIN BỊ KHOÁ LẠI TRONG VÒNG X NGÀY, 
+                                                                              HAY KHOÁ LUÔN!!!
+                                       user/pass đúng -> VÀO APP ĐÚNG ROLE
+====================================
+ĐỀ THI PE TRƯỜNG F YÊU CẦU: THIẾT KẾ CÁC TEST CASE ĐỂ
+
+1. KIỂM THỬ CODE
+- ĐỌC 1 ĐOẠN CODE, TÌM SAI TRONG CODE
+
+- GIẢ SỬ CODE ĐÃ ĐC SỬA, VIẾT ĐÚNG, THIẾT KẾ TEST CASE ĐỂ CHỨNG MINH/ĐỂ TEST RẰNG HÀM NGON HAY KO
+
+2. KIỂM THỬ CHỨC NĂNG (MÀN HÌNH)
+- THIẾT KẾ TEST CASE
+
+
+>>>>> ĐIỀN CÁC TEST CASE VÀO FILE EXCEL
+
+
+
+
