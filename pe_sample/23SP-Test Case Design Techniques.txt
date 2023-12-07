@@ -5,13 +5,13 @@ CÁC KĨ THUẬT THIẾT KẾ TEST CASE - TEST CASE DESIGN TECHNIQUES
 1. ĐỊNH NGHĨA VỀ TEST CASE, TEST CASE LÀ GÌ?
 - là cái mô phỏng/giả lập lại các tình huống 
     sử dụng hàm/method/class,    sử dụng app
-        của developer        của    user
+    của developer                              của    user
 
   để kiểm tra xem hàm/method/class          hoặc app có ngon, mlem, yummy hay ko???
 
 
   bằng cách chuẩn bị sẵn các bộ data - 
-     gồm input data (dữ liệu đầu vào)   và  expected value (kết quả xử lí kì vọng) 
+   gồm input data (dữ liệu đầu vào)   và  expected value (kết quả xử lí kì vọng) 
 
 * MỘT TEST CASE SẼ GỒM 3 + 1 THÀNH PHẦN LỚN SAU:
 -> DỮ LIỆU ĐẦU VÀO (INPUT)
@@ -19,22 +19,21 @@ CÁC KĨ THUẬT THIẾT KẾ TEST CASE - TEST CASE DESIGN TECHNIQUES
 -> CÁC BƯỚC/CÁCH SỬ DỤNG HÀM, SỬ DỤNG TÍNH NĂNG (đưa data, nhấn gì, gọi gì, xem trả về) 
 
 -> TEST RUN, TỨC LÀ RUN HÀM, RUN APP THEO CÁC BƯỚC Ở TRÊN ĐỂ VERIFY ĐÚNG SAI CỦA HÀM/APP
-   NHẬN VỀ PASSED HOẶC FAILED   
+    NHẬN VỀ PASSED HOẶC FAILED   
 
 *VÍ DỤ:
-- test hàm (code) User checkLogin(username, password)   môn PRJ301
-                  long getFactorial(int n)              môn SWT301
-
+- Test hàm (code) User checkLogin(username, password)   môn PRJ301
   TEST CASES:     user/pass: ok/ok -> ok 
-                             ok/!ok -> !ok
-                             !ok/? -> !ok
+                            ok/!ok -> !ok
+                            !ok/? -> !ok
 
+- Test hàm (code)  long getFactorial(int n)              môn SWT301
                   n < 0 -> CHỬI
                   n == 0, 1, 2 ... 20 -> TÍNH NGON
                   n > 20 -> CHỬI       
 
 - test chức năng, tính năng (app)
-                  màn hình Login                        môn PRJ301/PE/Lab
+                  màn hình Login                môn PRJ301/PE/Lab
                                                             SWT301/guru99
  
                   user/pass: ok/ok -> ok    , "Hello <fullname>"
@@ -56,7 +55,7 @@ CÁC KĨ THUẬT THIẾT KẾ TEST CASE - TEST CASE DESIGN TECHNIQUES
   (bộ data kiểm thử ứng một tình huống xài hàm/app)
   trong đó có 3 kĩ thuật nổi bật, hay dùng như sau
 
-3.1 EQUIVALANCE PARTITIONING 
+3.1 EQUIVALENCE PARTITIONING 
     (kĩ thuật phân vùng tương đương - chia nhóm/cụm/khu vực/vùng)
 
 3.2 BOUNDARY VALUE ANALYSIS
