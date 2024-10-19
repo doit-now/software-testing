@@ -1,0 +1,48 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Math Utility Project (CI included) | © 2024 by giáo.làng
+
+on:
+  push:
+    branches: [ "main" ]    # Lấy code từ nhánh main nếu có ai push code lên. Có thể thay bằng nhánh dev... 
+  pull_request:
+    branches: [ "main" ]    # Lấy code từ nhánh main nếu có ai gửi pull request. Có thể thay bằng nhánh dev...  
+
+
+jobs:
+  build:    # Những công việc dev làm thường ngày: lấy code, build, chạy test, đóng gói, gửi build, hosting...
+
+
+    runs-on: ubuntu-latest    # Mượn máy ảo-server Ubuntu trên xứ Mỹ để build, đóng gói app
+
+    steps:
+    - uses: actions/checkout@v4    # Lấy code từ kho main/dev thảy vào máy ảo của GitHub để chuẩn bị build app ở các bước phía dưới
+
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3    # Khai báo cần dùng phiên bản JDK nào đó trên server ảođể build
+      with:
+        java-version: '22'         # Khai báo sử dụng phiên bản JDK 22 để build, có thể chọn version khác
+        distribution: 'temurin'    # Khai báo sử dụng phiên bản biến thể JDK tên là "temurin"
+        cache: maven
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml    # Quá trình build sẽ cần đến file cấu hình pom.xml. Gọi lệnh mvn huyền thoại - tự chạy Unit Test nếu có!!!
+      
+    - name: Distribute jar-war file    # Gửi file .jar .war đi đâu, CD/DevOps nhảy vào ...
+      run: mkdir staging && cp target/*.jar staging  # Tạo thư mục staging chứa file .jar .war sau khi build phục vụ cho việc download sản phẩm      
+     
+    - name: Make hyperlink to jar-war file    # Tạo hyperlink để download build 
+      uses: actions/upload-artifact@v4
+      with:
+          name: Click-here-to-download-jar-library    # Hyperlink để download build, app
+          path: staging
+
+# End of CI workflow file. 
+
+# BẠN CÓ THỂ HỌC THÊM CÁC LỆNH CỦA GITHUB ACTIONS ĐỂ LÀM TIẾP QUY TRÌNH CD/DEVOPS Ở ĐÂY, 
+# ĐỂ ĐẨY CÁI OUTPUT, APP, BUILD SANG CÁC SERVER KHÁC: STAGING SERVER, PRODUCTION SERVER...
