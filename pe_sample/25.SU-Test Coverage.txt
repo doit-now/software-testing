@@ -1,0 +1,47 @@
+public class GradeCalculator {
+    
+    /**
+     * Hàm tính xếp hạng học sinh dựa trên điểm số và chuyên cần
+     * Dùng để demo các loại test coverage
+     */
+    public String calculateGrade(int score, boolean hasGoodAttendance) {
+        // Statement 1: Lệnh thường - Log thông tin đầu vào
+        System.out.println("Calculating grade for score: " + score);
+        
+        // Statement 2: Kiểm tra điểm hợp lệ
+        if (score < 0 || score > 100) {          // Branch 1: True/False
+            return "Invalid score";               // Statement 3
+        }
+        
+        // Statement 4: Kiểm tra điểm giỏi
+        if (score >= 80) {                       // Branch 2: True/False
+            // Statement 5: Lệnh thường - Log thông tin điểm cao
+            System.out.println("High score detected");
+            
+            // Statement 6: Kiểm tra chuyên cần cho điểm cao
+            if (hasGoodAttendance) {             // Branch 3: True/False
+                return "Excellent";               // Statement 7
+            } else {
+                return "Good";                    // Statement 8
+            }
+        }
+        
+        // Statement 9: Lệnh thường - Log thông tin điểm trung bình
+        System.out.println("Processing medium score");
+        
+        // Statement 10: Kiểm tra điểm trung bình với chuyên cần
+        if (score >= 60 && hasGoodAttendance) {  // Branch 4: True/False
+            // Condition A: score >= 60 (True/False)
+            // Condition B: hasGoodAttendance (True/False)
+            return "Average+";                    // Statement 11
+        }
+        
+        // Statement 12: Kiểm tra điểm trung bình
+        if (score >= 60) {                       // Branch 5: True/False
+            return "Average";                     // Statement 13
+        }
+        
+        // Statement 14: Điểm yếu
+        return "Poor";                           // Statement 15
+    }
+}
