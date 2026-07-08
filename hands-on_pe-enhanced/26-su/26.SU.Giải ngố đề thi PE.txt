@@ -1,0 +1,251 @@
+=======================================================================
+   GIẢI NGỐ ĐỀ THI PE - PRACTICAL EXAM MÔN KIỂM THỬ PHẦN MỀM SWT301
+=======================================================================
+I. ĐỀ THI TẬP TRUNG VÀO VIỆC KIỂM TRA KIẾN THỨC VỀ:
+- TÌM SAI SÓT, KHIẾM KHUYẾT TRONG SOURCE CODE (DEFECTS) (DEVELOPER ROLE)
+
+- THIẾT KẾ CÁC TEST CASES: ĐÚNG VÀ ĐỦ                    (DEVELOPER ROLE)
+  - TEST CASES CHO RUN SOURCE CODE - HÀM / METHOD, CLASS -> UNIT TESTING 
+
+  - TEST CASES CHO KIỂM THỬ CÁC CHỨC NĂNG, CÁC MÀN HÌNH CỦA APP (QA/QC/TESTER)
+               CHẠY ĐÚNG HAY SAI, NHƯ DỰ KIẾN HAY KO             SYSTEM TESTING
+                                                                 FUNCTIONAL TESTING
+
+II. CẤU TRÚC ĐỀ THI PE: 3 CÂU HỎI LỚN
+
+1. QUESTION 1 - CÂU HỎI 1 - TÌM SAI SÓT TRONG SOURCE CODE
+
+2. QUESTION 1 - CÂU HỎI 2 - THIẾT KẾ CÁC "UNIT TEST" TEST CASE - TEST CASE ĐỂ TEST HÀM
+   WHITE-BOX TESTING
+
+3. QUESTION 3 - CÂU HỎI 3 - THIẾT KẾ CÁC TEST CASE ĐỂ TEST 1 MÀN HÌNH, 1 CHỨC NĂNG
+   BLACK-BOX TESTING
+----------------------------------------------------------------------------------
+1. QUESTION 1 - CÂU HỎI 1 - TÌM SAI SÓT TRONG SOURCE CODE  ~~~~ 3 ĐIỂM
+- CHO 1 HOẶC 2 HÀM JAVA (HÀM NẰM TRONG CLASS, GỌI NHAU) CÓ STATIC VÀ KO STATIC
+  DÀI KHOẢNG 20-3O DÒNG CODE, CÓ SỐ DÒNG CODE LUÔN 
+
+- TRONG HÀM TIỀM ẨN NHIỀU SAI SÓT (DEFECTS) CỐ TÌNH ĐỂ BẠN TÌM RA -  CÓ KHOẢNG 10+ SAI SÓT
+  SAI SÓT ĐẾN TỪ: SAI QUY ƯỚC CODE, CÚ PHÁP, SỬ DỤNG BIẾN, VƯỢT MẢNG, SAI LOGIC...
+
+- NHIỆM VỤ: TÌM RA 6 SAI SÓT / 10+ SAI SÓT
+-           MỖI SAI SÓT PHẢI GHI RÕ: DÒNG MẤY BỊ SAI; CÂU NGẮN GHI RÕ TẠI SAO SAI
+                                                      THÍCH THÌ GHI THÊM CÁCH FIX, CÀNG TỐT!!!
+            NẾU TÌM SAI SÓT BỊ SAI (TRẢ LỜI BỊ SAI), 
+                THÌ BỊ TRỪ NHẸ NHẸ ĐIỂM,           0.5 ĐIỂM TÌM THẤY 1 SAI SÓT
+                                                  -0.2 ĐIỂM CHO 1 CÂU TRẢ LỜI SAI!!!
+----------------------------------------------------------------------------------
+2. QUESTION 1 - CÂU HỎI 2 - THIẾT KẾ CÁC "UNIT TEST" TEST CASE - TEST CASE ĐỂ TEST HÀM
+- CHO 1 HÀM DÀI KHOẢNG 10-20 LỆNH, CHỨA IF ELSE (CHẮC KÈO), SWITCH CASE, HOẶC VÒNG LẶP (ÍT HƠN)
+  ĐÔI KHI, ĐỀ THI KO CHO HÀM THEO DẠNG SOURCE CODE MÀ CHO DẠNG SƠ ĐỒ FLOW-CHART
+
+- THIẾT KẾ CÁC TEST CASE, CHẾ DATA ĐẦU VÀO CHO CÁC HÀM ĐỂ NÓ CÀN QUÉT CÁC CÂU LỆNH
+                          - ĐẢM BẢO RẰNG CÁC LỆNH ĐC CHẠY QUA HẾT - STATEMENT COVERAGE
+                          - ĐẢM BẢO RẰNG CÁC LỆNH IF ELSE CHẠY QUA HẾT - BRANCH COVERAGE
+  THIẾT KẾ VỪA ĐỦ SỐ LƯỢNG BỘ DATA ĐẦU VÀO ĐỂ QUÉT HẾT - BAO PHỦ - COVERAGE HẾT CODE, HẾT NHÁNH
+  KO THIẾT KẾ DƯ -> MINIMUM COVERAGE
+----------------------------------------------------------------------------------
+3. QUESTION 3 - CÂU HỎI 3 - THIẾT KẾ CÁC TEST CASE ĐỂ TEST 1 MÀN HÌNH, 1 CHỨC NĂNG
+- CHO 1 MÀN HÌNH CÓ CÁC Ô NHẬP LIỆU TÍCH CHỌN, NÚT BẤM... VÀ CÁC RULE / QUY TẮC NHẬP LIỆU
+  VÍ DỤ: NĂM SINH TỪ 2000+
+         NGÀY BẮT ĐẦU: > NGÀY HIỆN TẠI 7 NGÀY...
+         NGÀY BẮT ĐẦU < NGÀY KẾT THÚC
+         CÔNG THỨC TÍNH TOÁN: TIỀN TOUR DỰA TRÊN: SỐ NGƯỜI LỚN, TRẺ EM, SỐ NGÀY LƯU TRÚ
+
+-> THIẾT KẾ CÁC TEST CASE, BỘ DATA ĐỂ BAO PHỦ CÁC TÌNH HUỐNG NHẬP LIỆU => ĐẢM BẢO MÀN HÌNH 
+  XỬ LÝ ĐÚNG KẾT QUẢ CHO CÁC RÀNG BUỘC DỮ LIỆU
+
+-> THỐNG KÊ CHUNG DẠNG ĐỀ: KHOẢNG 15+ TEST CASE HỢP LÝ LÀ TẠM ỔN!!!
+   CASE AGE >= 18, BẠN CÓ TEST CASE 18, 20, 25, 30, 60 -> THỪA, CHỈ CẦN 18 LÀ ĐÃ ĐỦ
+                               THÊM 17 VÀ 18 LÀ OKIE
+                               2 CASES ĐÁNH BẠI 5 CASES 
+
+   NHIỀU VÀ HỢP LÝ, CHỨ KO PHẢI NHIỀU BỞI SỰ LẶP LẠI CỦA CÙNG 1 STYLE XỬ LÝ!!!!!!!!!
+
+* ĐỀ THI CHO MÌNH 1 MÀN HÌNH (UI) CÓ CÁC Ô NHẬP, NÚT BẤM, CHECK BOX... 
+  ĐỀ THI CHO THÊM (RẤT DÀI) QUY TẮC NHẬP LIỆU CHO TỪNG Ô NHẬP |
+  VÀ CHO CÔNG THỨC TÍNH TOÁN PHỐI HỢP CÁC Ô NÀY               | GỌI CHUNG LÀ RULE, LOGIC
+  VÀ CÔNG THỨC TÍNH TOÁN ĐC GÀI SAU NÚT BẤM                   | HAY REQUIREMENTS
+                                                 
+  > YÊU CẦU: THIẾT KẾ TEST CASE ĐỦ HỢP LÝ (15+) 
+             VÀ ĐIỀN THEO ĐÚNG TEMPLATE Ở TAB SỐ 3 - Q3
+
+* TA PHẢI CÓ KĨ THUẬT THIẾT KẾ TEST CASE ĐÚNG, ĐỦ, HỢP LÝ
+  NÔM NA: THIẾT KẾ CÁC TỔ HỢP DATA ĐẦU VÀO CHO CÁC TÌNH HUỐNG NHẬP LIỆU
+                   PHỐI TRỘN, MIX CÁC BỘ DATA ĐẦU VÀO CHO CÁC Ô NHẬP LIỆU
+          BAO NHIÊU TỔ HỢP, BẤY NHIÊU TEST CASE -> VÔ CHỪNG, VÌ MIỀN DATA ĐƯA VÀO LÀ VÔ
+                                                                               CHỪNG!!!
+  CÁC KĨ THUẬT (CHÍNH) SỬ DỤNG Ở ĐÂY:
+  - EP - EQUIVALENCE PARTITIONING - KỸ THUẬT PHÂN VÙNG TƯƠNG ĐƯƠNG
+  - BVA - BOUNDARY VALUE ANALYSIS - KỸ THUẬT PHÂN TÍCH GIÁ TRỊ BIÊN (BỔ TRỢ CHO EP)          
+  - DECISION TABLE - BẢNG QUYẾT ĐỊNH
+  - ...
+ 
+=================================================================================
+III. TEMPLATE LÀM BÀI
+- BẠN KO VIẾT CÂU TRẢ LỜI TỰ DO, MÀ "TỰ DO" TRONG VIỆC ĐIỀN VÀO TEMPLATE
+- NHẮC KĨ, DẶN EM, CHÚ Ý KỸ
+  - KO DÙNG TEMPLATE CỦA MÙA KHÁC
+  - KO DÙNG TEMPLATE CỦA NƠI KHÁC
+  - KO CHỈNH SỬA MÀU SẮC, FONT CHỮ, LAYOUT... CỦA TEMPLATE: CHỈ ĐIỀN VÀO CHỖ CẦN ĐIỀN
+                                                            XOÁ CÂU GHI CHÚ PHẦN GỢI Ý LÀM BÀI
+
+>>>>> CHỈ DÙNG TEMPLATE CỦA CHÍNH CHỦ ĐỀ THI, ĐIỀN ĐÚNG CHỖ CẦN ĐIỀN, KO CHỈNH SỬA CHỖ NÀO KHÁC
+                                              XOÁ PHẦN GHI CHÚ (MÀU XANH)
+
+>>>>> TEMPLATE NHÀ TRƯỜNG SHIP CÙNG ĐỀ THI, FILE .XLSX
+
+
+==========================================
+>>>>> CÂU 2 VÀ CÂU 3 XÀI CHUNG KHÁI NIỆM TEST CASE
+
+>>>>> TEST CASE LÀ GÌ?
+- TEST CASE - TC LÀ BỘ DATA ĐƯA VÀO HÀM, VÀO CLASS, API, VÀO MÀN HÌNH, VÀO APP (INPUT)
+                 (VÀ TRÌNH TỰ XÀI MÀN HÌNH, XÀI APP - NẾU LÀ TEST MÀN HÌNH, TEST APP)
+                 VÀ BỘ DATA KỲ VỌNG HÀM, CLASS, API, MÀN HÌNH, APP SẼ TRẢ VỀ   (OUTPUT - EXPECTED RESULT)
+
+- TEST CASE CÓ THÊM PHẦN TEST RUN: GHI NHẬN RẰNG HÀM, APP ĐÃ PASSED TEST CASE HAY CHƯA!!!!
+- CÓ THỂ CÓ NHIỀU TEST RUN, TỨC LÀ HÀM, MÀN HÌNH ĐC TEST ĐI TEST LẠI NHIỀU LẦN TRONG CÁC NGÀY KHÁC NHAU
+                                        BỞI NHỮNG NGƯỜI KHÁC NHAU
+
+- 1 TEST CASE CÓ NHIỀU TEST RUN (ACTUAL RESULT, PASSED | FAILED | NGÀY TEST, AI TEST) !!!!!!!!!!!!!!!!!!!!!!!
+
+
+     INPUT ----------> HÀM, CLASS, API, SCREEN, APP ----------> HY VỌNG NHẬN VỀ OUTPUT
+     INPUT DATA                                                 EXPECTED RESULT
+ 
+- VÍ DỤ:
+     INPUT 25               Math.sqrt(25)           ----------> expected result: 5
+                            Java, C#, Python 
+     -----------------------------------------------------------------------------> TEST CASE
+
+     QA/QC/TESTER
+     INPUT USER/PASS ------------> MÀN HÌNH LOGIN ------------> EXPECTED RESULT 
+           ĐÚNG / ĐÚNG                                          MỜI VÀO, LOGIN THÀNH CÔNG
+           ĐÚNG / SAI                    "                      CHỬI SAI PASS, KO CHO VÀO
+
+           ĐÚNG / SAI                    "                      CHỬI SAI, ++ SỐ LẦN SAI
+                                                                SAI ĐỦ 5 LẦN LOCK ACCOUNT
+           ...
+
+    THỰC TẾ KHI ĐƯA VÀO VÀ CHẠY VỚI BỘ TEST CASE, BỘ DATA Ở TRÊN => GỌI LÀ TEST RUN 
+    TEST RUN: RUN BỘ TEST DATA VÀ SO SÁNH VỚI EXPECTED RESULT COI ACTUAL RESULT - APP TRẢ VỀ GÌ?
+                                   ACTUAL RESULT == EXPECTED RESULT -> PASSED
+                                   ACTUAL RESULT != EXPECTED RESULT -> FAILED, BUG!!!
+
+    RUN: KHI CHẠY CĂN BẬC 2 CỦA 25 HÀM SQRT KO TRẢ VỀ 5 -> FAILED
+    RUN: KHI CHẠY CĂN BẬC 2 CỦA 25 HÀM SQRT TRẢ VỀ 5 -> PASSED
+    RUN: KHI NHẬP SAI PASS 5 LẦN, KO CẢNH BÁO LOCK ACCOUNT -> FAILED
+    RUN: KHI NHẬP SAI PASS 5 LẦN, CÓ CẢNH BÁO LOCK ACCOUNT -> PASSED
+    RUN: KHI NHẬP ĐÚNG Ở LẦN 6, PHẢI BÁO ACCOUNT ĐÃ BỊ LOCK -> PASSED
+-----------------------------------------------------------------------------------------
+2. QUESTION 1 - CÂU HỎI 2 - THIẾT KẾ CÁC "UNIT TEST" TEST CASE - TEST CASE ĐỂ TEST HÀM
+   WHITE-BOX TESTING
+- ĐỀ THI CHO 1 CÁI HÀM NHẬN ĐẦU VÀO Ở THAM SỐ HÀM
+- TRONG HÀM SẼ CÓ LỆNH IF ELSE RETURN
+
+>>>>> NHIỆM VỤ: THIẾT KẾ CÁC TEST CASE ĐỂ THOẢ 2 ĐIỀU SAU?
+2.1 MINIMUM STATEMENT COVERAGE (COVERAGE) - TEST CASE ĐỦ NHỎ ĐỂ ĐẢM BẢO MỌI LỆNH - STATEMENT ĐỀU ĐC CPU CHẠY QUA
+- SỐ TEST CASE KO CẦN NHIỀU, CẦN TỐI THIỂU BỘ DATA ĐƯA VÀO ĐỂ MỌI LỆNH TRONG HÀM ĐỀU PHẢI ĐC CHẠY QUA 1 LẦN
+
+2.2 MINIMUM BRANCH COVERAGE (IF ELSE) - TEST CASE ĐỦ NHỎ ĐỂ ĐẢM BẢO MỌI LỆNH IF ELSE VÀ TRONG IF ELSE ĐỀU ĐC CPU CHẠY QUA
+
+- SỐ TEST CASE KO CẦN NHIỀU, CẦN TỐI THIỂU BỘ DATA ĐƯA VÀO ĐỂ MỌI LỆNH IF ELSE TRONG HÀM ĐỀU PHẢI ĐC CHẠY QUA 1 LẦN
+
+
+
+=====================================================================================
+PHÂN VÙNG TƯƠNG ĐƯƠNG: EQUIVALENCE PARTITIONING
+=====================================================================================
+- LÀ TẬP GIÁ TRỊ ĐẦU VÀO, LÀ MIỀN GIÁ TRỊ ĐẦU VÀO NƠI APP, HÀM CÓ CÁCH HÀNH XỬ TƯƠNG ĐƯƠNG NHAU, CÓ KẾT QUẢ XỬ LÍ TƯƠNG ĐƯƠNG NHAU, DO ĐÓ TA CHỈ CẦN LẤY 1 GIÁ TRỊ ĐẠI DIỆN TRONG VÙNG, MIỀN, PARTITION LÀ ĐỦ
+- ĐÚNG CHO 1 GIÁ TRỊ TRONG MIỀN, VÙNG, THÌ ĐÚNG CHO CẢ MIỀN
+
+* VÍ DỤ: TUỔI: [___________]  * GHI CHÚ: NHẬP TUỔI >= 18 THÌ MỚI ĐƯỢC ĐĂNG KÍ...
+               [x] CHỊU TRÁCH NHIỆM VỀ LỰA CHỌN
+
+                                  <-  18   ->
+              -------------------------|----------------------------
+                APP KO CHO...            OKIE, MỜI BẠN   19 20 25 100 OKIE XỬ LÍ NHƯ NHAU
+   
+==================================================================================
+CÂU 3 - THIẾT KẾ TEST CASE ĐỂ TEST CHỨC NĂNG, TEST MÀN HÌNH, FUNCTIONAL TESTING
+* CÓ NHIỀU KĨ THUẬT CÓ THỂ ÁP DỤNG ĐỂ THIẾT KẾ SỐ LƯỢNG TEST CASE BAO SÂN CÁC TÌNH HUỐNG NHẬP LIỆU TRÊN MÀN HÌNH
+* 3 KĨ THUẬT HAY DÙNG: EQUIVALENCE PARTITIONING - EP, BOUNDARY VALUE ANALYSIS (BVA), DECISION TABLE 
+- EP: CHIA MIỀN DỮ LIỆU NHẬP LIỆU VÀO Ô NHẬP THÀNH 2 VÙNG: VALID VÀ !VALID, HỢP LỆ VÀ KO HỢP LỆ
+- BVA: KHI MIỀN DỮ LIỆU NHẬP CÓ MIN-MAX, RANGE - KHOẢNG, 
+  CHÚ Ý GIÁ TRỊ MIN-1, MAX+1 NÓ BẮT ĐẦU LÀ NƠI THAY ĐỔI CÁCH TÍNH TOÁN XỬ LÝ CỦA APP, CẦN ĐC TEST
+- DECISION TABLE: LÀ BẢNG 2 CHIỀU HÀNG CỘT; GHI RA CÁC TỔ HỢP NHẬP LIỆU CỦA CÁC Ô NHẬP LIỆU
+                  MỖI TỔ HỢP CHÍNH LÀ TEST CASE
+
+                          MỖI TEST CASE THEO CHIỀU DỌC 
+                          LÀ TỔ HỢP TRUE/FALSE CỦA CÁC Ô NHẬP Ở CỘT ĐẦU TIÊN
+
+  CỘT 1                  | TEST CASE 1| TEST CASE 2 | ...
+  (CỘT ĐẦU VÀO)                TRUE        FALSE
+  MÃ SỐ       HỢP-LỆ?          YES          NO
+  TÊN-SV      HỢP-LỆ?
+  EMAIL       HỢP-LỆ?           NO
+  SEARCH KW   HỢP-LỆ?           -           -
+
+  -----------------------------------------------------
+  TEST DATA              GHI RA VALUE CỤ
+                         THỂ CÁC Ô NHẬP
+                         CỦA 1 TC THEO CHIỀU
+                         DỌC
+  -----------------------------------------------------
+  EXPECTED RESULT        VỚI BỘ TỔ HỢP DATA THEO
+                         CHIỀU DỌC CỦA TỪNG TC
+                         THÌ APP CÓ KQ LÀ THẾ NÀO
+                         XỬ LÝ THẾ NÀO
+
+* LƯU Ý NHẸ 1:
+- VALID VÀ KO VALID CỦA Ô NHẬP CÓ NHIỀU DẠNG, RƠI VÀO 2 TÌNH HUỐNG
+  - VALID/INVALID VẺ BỀ NGOÀI, ĐỊNH DẠNG NHẬP, FORMAT NHẬP: VÍ DỤ YÊU CẦU NHẬP SỐ, DẤU CHẤM, DẤU GẠCH NGANG
+  - VALID/INVALID BÊN TRONG, LOGIC BÊN TRONG, LIÊN QUAN XỬ LÝ APP: EMAIL CẤM TRÙNG, KEY CẤM TRÙNG, 
+    SỐ LẦN SAI KO QUÁ 5
+  > MỖI CÁI KHÔNG HỢP LỆ SẼ LÀ 1 TEST CASE!!!!!!!!!!!!!!
+  > CÓ THỂ CÓ NHIỀU DẠNG KO HỢP LỆ
+    ĐÚNG CHỈ CÓ 1, SAI THÌ NHIỀU!!!!!!!!!!!! SỐ TỔ HỢP TEST CASE NHIỀU HƠN 2^N (N LÀ SỐ INPUT)
+
+  NÊN TÁCH THÀNH 2 DÒNG TRONG DECISION TABLE ĐỂ DỄ KIỂM SOÁT, 
+  VÍ DỤ ĐÚNG FORMAT NHƯNG SAI LOGIC, ĐÚNG FORMAT MÃ SỐ, NHƯNG SAI VIỆC TRÙNG MÃ SỐ!!!!
+
+* LƯU Ý NHẸ 2:
+- CÓ BAO NHIÊU NÚT BẤM, TỨC LÀ CÓ TƯƠNG ỨNG BẤY NHIÊU TÍNH NĂNG, THÌ TA CÓ THỂ XEM XÉT TÁCH BẢNG
+  MỖI BẢNG ỨNG VỚI 1 NÚT BẤM, 1 TÍNH NĂNG
+  ĐỂ DỄ XEM XÉT SỐ TEST CASE ỨNG VỚI 1 NÚT BẤM, 1 CHỨC NĂNG
+  TƯ DUY THIẾT KẾ TEST CASE, VÀ LÚC RUN CÁI TEST (TEST RUN): 
+                                      XONG CHỨC NĂNG NÀY, THÌ SANG CHỨC NĂNG KIA
+  CHÚ Ý CÓ CHỨC NĂNG, NÚT BẤM SẼ CÓ NHIỀU TEST CASE, CÓ NÚT BẤM THÌ ÍT TEST CASE
+  NÚT BẤM ĐÒI HỎI NHIỀU ĐẦU VÀO THÌ NHIỀU TEST CASE (SỐ TỔ HỢP INPUT)
+
+
+* LƯU Ý NHẸ 3:
+- CÓ THỂ GỘP CÁC TEST CASE, RÚT GỌN BỚT SỐ TEST CASE KHI CÁC TEST CASE TEST CÙNG 1 TÌNH HUỐNG ĐẦU VÀO
+  VÍ DỤ TEST REQUIRED/BẮT BUỘC PHẢI NHẬP, THƯỜNG DÂN FRONT-END SẼ BÁO LỖI HÀNG LOẠT CÁC Ô NHẬP NẾU CÁC Ô ĐỒNG
+  THỜI CÙNG VI PHẠM, TA GỘP THÀNH 1 TEST CASE VỚI CÂU MÔ TẢ STEPS TEST CASE: 
+  LEAVE ANY OF THE INPUT FIELD BLANK
+  NHẬP CHỪA 1 Ô BẤT KỲ  
+                                      --------> EXPECTED RESULT: THE SYSTEM RAISES AN ERROR MESSAGE AT THE
+                                                                 CORESSPONDING EMPTY FIELD, 
+                                                                       "THE FIELD XXX IS REQUIRED"
+
+  0000
+  0000
+  0001
+  0010
+  0011
+  0100
+  0101
+  0110
+  0111
+  1000
+  1001
+  1010
+  1011
+  1100
+  1101
+  1110
+  1111
+
+
