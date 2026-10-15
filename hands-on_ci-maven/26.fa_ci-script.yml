@@ -1,0 +1,172 @@
+# =====================================================================
+#  MATH UTILITY PROJECT - CI PIPELINE
+#  © 2026 by giáo.làng
+# ---------------------------------------------------------------------
+#  Mục đích: Tự động build + test project Java/Maven mỗi khi có code
+#            được push lên nhánh main hoặc có Pull Request vào main.
+#
+#  Nội dung chính:
+#   1. Cấu trúc file YAML (indent bằng SPACE, KHÔNG dùng TAB)
+#   2. Các khái niệm: workflow, job, step, action, runner
+#   3. Cách dùng biến môi trường ${{ ... }} của GitHub
+# =====================================================================
+
+name: Math Utility Project (CI included) | © 2026 by giáo.làng
+# ↑ Tên hiển thị trên tab "Actions" của GitHub UI
+
+
+# ---------------------------------------------------------------------
+# 1. KHI NÀO PIPELINE NÀY CHẠY? (trigger)
+# ---------------------------------------------------------------------
+on:
+  push:
+    branches: [ "main" ]     # Chạy khi có push code lên nhánh main
+  pull_request:
+    branches: [ "main" ]     # Chạy khi có PR mở/update vào nhánh main
+
+  # (Tuỳ chọn) Cho phép bấm nút "Run workflow" thủ công trên GitHub UI
+  workflow_dispatch:
+
+
+# ---------------------------------------------------------------------
+# 2. QUYỀN CỦA TOKEN GITHUB (BẢO MẬT)
+# ---------------------------------------------------------------------
+# Mặc định GitHub cấp khá nhiều quyền -> không an toàn.
+# Chỉ cần đọc source code -> khai báo "contents: read" là đủ.
+# Đây là nguyên tắc "Least Privilege" (đặc quyền tối thiểu).
+permissions:
+  contents: read
+
+
+# ---------------------------------------------------------------------
+# 3. CHỐNG CHẠY TRÙNG LẶP (CONCURRENCY)
+# ---------------------------------------------------------------------
+# Nếu push liên tục nhiều lần trong thời gian ngắn, mặc định GitHub sẽ
+# chạy nhiều pipeline song song -> tốn tài nguyên, log rối.
+# Cấu hình dưới đây: nếu cùng 1 nhánh, huỷ cái cũ, chạy cái mới nhất.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+
+# ---------------------------------------------------------------------
+# 4. KHAI BÁO CÁC JOB
+# ---------------------------------------------------------------------
+jobs:
+
+  # ----- JOB: build -----
+  build:
+    # Runner = máy ảo miễn phí GitHub cấp cho mỗi lần chạy.
+    # ubuntu-latest hiện tại ≈ Ubuntu 24.04 (2025).
+    runs-on: ubuntu-latest
+
+    # Nếu job chạy quá 15 phút -> tự huỷ (tránh treo CI vô hạn).
+    timeout-minutes: 15
+
+    # -----------------------------------------------------------------
+    # CÁC BƯỚC (STEPS) — chạy tuần tự từ trên xuống
+    # -----------------------------------------------------------------
+    steps:
+
+      # --- BƯỚC 1: Kéo source code từ repo về máy ảo ---
+      - name: Checkout repository
+        uses: actions/checkout@v6 
+        # @v6 là version mới nhất (10/2026).
+        # Action này tương đương lệnh: git clone <repo> .
+
+      # --- BƯỚC 2: Cài đặt JDK ---
+      - name: Set up JDK 25 (LTS)
+        uses: actions/setup-java@v5
+        with:
+          # JDK 25 là bản LTS (Long-Term Support) — ổn định, dùng đến 2028.
+          # ⚠️ KHÔNG nên dùng JDK 24 vì đây là bản non-LTS, chỉ hỗ trợ 6 tháng,
+          #    nhiều framework (Spring Boot 3.2, v.v.) chưa tương thích.
+          java-version: '25'
+          distribution: 'temurin'   # Temurin = Eclipse Adoptium, miễn phí, phổ biến
+          cache: maven              # Cache thư mục ~/.m2 để lần sau build nhanh hơn
+
+      # --- BƯỚC 3: Build + Test bằng Maven ---
+      - name: Build and Test with Maven
+        run: mvn -B package --no-transfer-progress --file pom.xml
+        # Giải thích các flag:
+        #   -B                    : Batch mode (log sạch, không màu mè)
+        #   package               : Phase của Maven = compile + test + đóng gói
+        #   --no-transfer-progress: Ẩn thanh tiến trình tải dependency
+        #   --file pom.xml        : Chỉ định file POM (thường là mặc định)
+        #
+        # ⚠️ Nếu project chưa có test, có thể thêm: -DskipTests
+        #    (Nhưng KHÔNG khuyến khích — nên viết test đầy đủ.)
+
+      # --- BƯỚC 4: Chuẩn bị file .jar / .war để upload ---
+      - name: Distribute jar-war file
+        run: |
+          # Tạo thư mục staging để chứa artifact cuối cùng
+          mkdir -p staging
+
+          # Ưu tiên 1: nếu build ra file .war (web app) -> copy hết
+          if ls target/*.war 1>/dev/null 2>&1; then
+            cp target/*.war staging/
+            echo "✅ Đã copy file .war"
+
+          # Ưu tiên 2: nếu build ra file .jar (app thường)
+          elif ls target/*.jar 1>/dev/null 2>&1; then
+            # Lọc bỏ file "original-*.jar" (Spring Boot plugin tạo ra file
+            # này để backup — KHÔNG phải file chạy được, nên loại bỏ).
+            find target -maxdepth 1 -name "*.jar" ! -name "original-*.jar" \
+                 -exec cp {} staging/ \;
+            echo "✅ Đã copy file .jar"
+
+          # Nếu không có gì -> FAIL rõ ràng, KHÔNG im lặng cho qua
+          else
+            echo "❌ Không tìm thấy file .jar hoặc .war trong target/"
+            echo "   Kiểm tra lại pom.xml và cấu hình <packaging>"
+            exit 1
+          fi
+
+          # In danh sách file đã staging để kiểm tra bằng mắt
+          ls -lh staging/
+
+      # --- BƯỚC 5: Upload artifact lên GitHub ---
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v6
+        with:
+          # Tên artifact khi tải về từ GitHub UI.
+          # Thêm ${{ github.run_number }} để mỗi lần build có tên riêng,
+          # tránh ghi đè lẫn nhau.
+          name: download_ngoc_trinh-${{ github.run_number }}
+
+          # Đường dẫn thư mục chứa file cần upload
+          path: staging
+
+          # Tự xoá artifact sau 7 ngày (tiết kiệm dung lượng lưu trữ)
+          retention-days: 7
+
+          # Mức nén 0-9 (0 = nhanh nhất, 9 = nhỏ nhất). 6 là cân bằng tốt.
+          compression-level: 6
+
+          # Nếu thư mục rỗng -> báo LỖI, không cho pipeline pass giả
+          if-no-files-found: error
+
+
+# =====================================================================
+#  📚 GHI CHÚ KỸ THUẬT
+# =====================================================================
+#
+#  1. Cấu trúc YAML: indent bằng SPACE (2 spaces), KHÔNG dùng TAB.
+#
+#  2. Không commit secret (token, password) vào repo.
+#     Nếu cần dùng, khai báo trong GitHub Secrets và tham chiếu qua
+#     cú pháp:  ${{ secrets.TEN_BIEN }}
+#
+#  3. GitHub Actions free tier cho tài khoản cá nhân:
+#     - Private repo: 2000 phút/tháng
+#     - Public repo : miễn phí không giới hạn
+#
+#  4. Mở rộng (tuỳ chọn):
+#     - Build đa phiên bản Java: dùng strategy.matrix
+#         strategy:
+#           matrix:
+#             java-version: [17, 21]
+#     - Gửi thông báo khi build fail: dùng  if: failure()  + curl webhook
+#
+# =====================================================================
