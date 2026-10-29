@@ -1,0 +1,126 @@
+<!--
+====================================================
+UNIT TEST - COVERAGE - CI/CD
+====================================================
+1. THỰC THI TEST COVERAGE TRỰC TIẾP TRONG INTELLIJ (Không cần plugin ngoài)
+- Chuột phải vào file/folder test hoặc class test
+- Chọn Run '...' with Coverage (hoặc bấm biểu tượng lá chắn màu xanh đỏ bên cạnh nút Run)
+- IntelliJ sẽ tô màu trực tiếp lên từng dòng code trong editor.
+  
+2. THỰC THI TEST COVERAGE DÙNG JACOCO, CÓ KIỂM SOÁT NGƯỠNG (QUALITY GATE) CHO CI/CD
+- Bổ sung file pom.xml như dưới đây
+- Quality Gate cho CI/CD: Yêu cầu Line Coverage ≥ 80%. Nếu không đạt, Maven báo BUILD FAILURE và pipeline CI/CD sẽ dừng ở bước kiểm tra.
+
+3. QUY ƯỚC MÃ MÀU HIỂN THỊ TRÊN CODE SAU KHI TEST COVERAGE
+- Màu xanh (Green): Code đã được test phủ qua
+- Màu đỏ (Red): Code chưa được test chạy tới
+- Màu vàng (Yellow): Nhánh điều kiện (if/else) chỉ mới chạy 1 PHẦN
+
+-->
+
+
+<build>
+    <plugins>
+        <!-- Surefire: Chạy Unit Test (JUnit) -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.5.0</version>
+        </plugin>
+
+        <!-- JaCoCo: Đo Test Coverage và kiểm tra ngưỡng CI/CD -->
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.16</version>
+
+            <configuration>
+                <!-- Loại Main.class khỏi Coverage -->
+                <excludes>
+                    <exclude>**/Main.class</exclude>
+                </excludes>
+            </configuration>
+
+            <executions>
+                <!-- Bước 1: Bật công cụ đo Coverage -->
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+
+                <!-- Bước 2: Tạo báo cáo Coverage sau khi test -->
+                <execution>
+                    <id>report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+
+                <!-- Bước 3: Chặn build nếu Coverage dưới 80% -->
+                <execution>
+                    <id>coverage-check</id>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                    <configuration>
+                        <rules>
+                            <rule>
+                                <!-- Kiểm tra toàn bộ project -->
+                                <element>BUNDLE</element>
+                                <limits>
+                                    <limit>
+                                        <!-- Đo tỷ lệ dòng code được test: LINE -->
+                                        <!-- Đo tỷ lệ nhánh code được test: BRANCH -->
+                                        <counter>LINE</counter>
+                                        <value>COVEREDRATIO</value>
+
+                                        <!-- Yêu cầu tối thiểu 80% -->
+                                        <minimum>0.80</minimum>
+                                    </limit>
+                                </limits>
+                            </rule>
+                        </rules>
+                        <!-- Không đạt ngưỡng thì BUILD FAILURE -->
+                        <haltOnFailure>true</haltOnFailure>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+
+<!--
+====================================================
+GHI NHỚ: UNIT TEST - COVERAGE - CI/CD
+====================================================
+
+1. Surefire: Chạy Unit Test (JUnit).
+2. JaCoCo: Đo mức độ code được thực thi khi test.
+3. Line Coverage: % dòng code đã được chạy qua.
+4. Quality Gate: Chặn build nếu Coverage < 80%.
+
+CÁC LỆNH MAVEN:
+
+mvn clean test
+  -> Chạy test và tạo báo cáo Coverage.
+
+mvn clean verify
+  -> Chạy test, tạo báo cáo và kiểm tra ngưỡng 80%.
+  -> Coverage >= 80%: BUILD SUCCESS.
+  -> Coverage < 80% : BUILD FAILURE.
+
+XEM BÁO CÁO:
+  target/site/jacoco/index.html
+
+CI/CD:
+  Pipeline chạy: mvn clean verify
+  -> BUILD FAILURE thì pipeline dừng.
+  -> BUILD SUCCESS thì có thể tiếp tục deploy.
+
+LƯU Ý:
+  Coverage cao (đặc biệt line coverage) không đồng nghĩa test tốt.
+  Test tốt phải có Assert để kiểm tra kết quả trả về, và bao phủ các trường hợp quan trọng
+-->
